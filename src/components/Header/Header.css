@@ -1,0 +1,231 @@
+/* ==========================================================================
+   MINIMALIST HEADER COMPONENT (Clean Light Aesthetic)
+   ========================================================================== */
+
+.minimal-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--hairline);
+  transition: all 0.2s ease;
+}
+
+.minimal-header-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand Identity */
+.minimal-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.minimal-brand-mark {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--editorial-parchment);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.minimal-brand:hover .minimal-brand-mark {
+  transform: scale(1.04);
+}
+
+.brand-letter {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.brand-dot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cerulean);
+}
+
+.minimal-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--editorial-parchment);
+  line-height: 1.1;
+}
+
+.brand-caption {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--editorial-muted);
+  font-weight: 500;
+}
+
+/* Minimalist Nav Tabs */
+.minimal-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.minimal-nav-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  color: var(--editorial-muted);
+  font-family: var(--font-ui);
+  font-size: 0.84rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nav-tab-icon {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.minimal-nav-tab:hover {
+  color: var(--editorial-parchment);
+  background: rgba(15, 23, 42, 0.04);
+}
+
+.minimal-nav-tab:hover .nav-tab-icon {
+  opacity: 1;
+}
+
+.minimal-nav-tab.active {
+  color: var(--cerulean);
+  background: var(--cerulean-bg);
+  font-weight: 600;
+}
+
+.minimal-nav-tab.active .nav-tab-icon {
+  opacity: 1;
+  color: var(--cerulean);
+}
+
+/* Header Actions */
+.minimal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.minimal-sound-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid var(--hairline);
+  color: var(--editorial-muted);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.minimal-sound-btn:hover {
+  color: var(--editorial-parchment);
+  border-color: var(--hairline-strong);
+}
+
+.minimal-sound-btn.active {
+  color: var(--cerulean);
+  border-color: var(--cerulean-hairline);
+  background: var(--cerulean-bg);
+}
+
+.sound-live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cerulean);
+  animation: soundPulse 1.5s infinite;
+}
+
+@keyframes soundPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+.minimal-mute-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid var(--hairline);
+  color: var(--editorial-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.minimal-mute-btn:hover {
+  color: var(--editorial-parchment);
+  border-color: var(--hairline-strong);
+}
+
+.minimal-mute-btn.muted {
+  color: var(--jasper);
+  border-color: var(--jasper-hairline);
+  background: var(--jasper-bg);
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .minimal-header-container {
+    padding: 0 16px;
+  }
+  .brand-caption {
+    display: none;
+  }
+  .nav-tab-text {
+    display: none;
+  }
+  .minimal-nav-tab {
+    padding: 8px 10px;
+  }
+}

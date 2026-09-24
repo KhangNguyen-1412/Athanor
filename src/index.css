@@ -1,0 +1,440 @@
+:root {
+  /* Complete Editorial Typography System - 100% Newsreader */
+  --font-newsreader: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-editorial-serif: var(--font-newsreader);
+  --font-editorial-display: var(--font-newsreader);
+  --font-editorial-body: var(--font-newsreader);
+  --font-editorial-sans: var(--font-newsreader);
+  --font-editorial-mono: var(--font-newsreader);
+
+  /* Universal alias mappings */
+  --font-display: var(--font-newsreader);
+  --font-ui: var(--font-newsreader);
+  --font-body: var(--font-newsreader);
+
+  /* Clean Light Palette */
+  --bg-canvas: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-subtle: #f1f5f9;
+
+  /* Minimalist Text Hierarchy */
+  --editorial-parchment: #0f172a; /* Slate 900 */
+  --editorial-ivory: #334155;     /* Slate 700 */
+  --editorial-muted: #64748b;     /* Slate 500 */
+  --editorial-dim: #94a3b8;       /* Slate 400 */
+
+  /* Minimalist Accents */
+  --cerulean: #0284c7;            /* Sky 600 */
+  --cerulean-light: #38bdf8;      /* Sky 400 */
+  --cerulean-ice: #0369a1;        /* Sky 700 */
+  --cerulean-deep: #0c4a6e;       /* Sky 900 */
+  --cerulean-bg: rgba(2, 132, 199, 0.08);
+  --cerulean-hairline: rgba(2, 132, 199, 0.25);
+
+  --jasper: #e11d48;              /* Rose 600 */
+  --jasper-light: #f43f5e;        /* Rose 500 */
+  --jasper-ember: #be123c;        /* Rose 700 */
+  --jasper-deep: #881337;         /* Rose 900 */
+  --jasper-bg: rgba(225, 29, 72, 0.08);
+  --jasper-hairline: rgba(225, 29, 72, 0.25);
+
+  /* Clean Light Surfaces */
+  --editorial-ink: #f8fafc;
+  --editorial-charcoal: #f1f5f9;
+  --editorial-surface: #ffffff;
+  --editorial-surface-elevated: #ffffff;
+  --editorial-card: #ffffff;
+  --editorial-card-hover: #ffffff;
+
+  /* Primary Accents */
+  --editorial-primary: var(--cerulean);
+  --editorial-secondary: var(--jasper);
+  --editorial-gold: var(--cerulean);
+  --editorial-gold-light: var(--cerulean-light);
+  --editorial-bronze: var(--jasper-deep);
+  --editorial-accent: var(--jasper);
+
+  /* Minimalist Hairline Borders */
+  --hairline: rgba(15, 23, 42, 0.08);
+  --hairline-strong: rgba(15, 23, 42, 0.16);
+  --hairline-gold: var(--cerulean-hairline);
+  --hairline-jasper: var(--jasper-hairline);
+
+  /* Faction Identity Tokens */
+  --veda-color: #0284c7;
+  --veda-bg: rgba(2, 132, 199, 0.08);
+  --afata-color: #059669;
+  --afata-bg: rgba(5, 150, 105, 0.08);
+  --carano-color: #7c3aed;
+  --carano-bg: rgba(124, 58, 237, 0.08);
+  --dao-suong-mu-color: #0891b2;
+  --dao-suong-mu-bg: rgba(8, 145, 178, 0.08);
+  --hai-linh-tran-color: #2563eb;
+  --hai-linh-tran-bg: rgba(37, 99, 235, 0.08);
+  --sa-mac-helios-color: #d97706;
+  --sa-mac-helios-bg: rgba(217, 119, 6, 0.08);
+  --hoi-am-hoang-color: #991b1b;
+  --hoi-am-hoang-bg: rgba(153, 27, 27, 0.08);
+
+  --lokheim-color: #e11d48;
+  --lokheim-bg: rgba(225, 29, 72, 0.08);
+  --norman-color: #d97706;
+  --norman-bg: rgba(217, 119, 6, 0.08);
+  --mist-color: #475569;
+  --mist-bg: rgba(71, 85, 105, 0.08);
+  --tan-lien-hiep-color: #dc2626;
+  --tan-lien-hiep-bg: rgba(220, 38, 38, 0.08);
+  --long-chi-quoc-color: #b91c1c;
+  --long-chi-quoc-bg: rgba(185, 28, 28, 0.08);
+
+  /* General aliases for components */
+  --bg-darkest: var(--editorial-ink);
+  --bg-primary: var(--editorial-charcoal);
+  --bg-secondary: var(--editorial-surface);
+  --bg-card: var(--editorial-card);
+  --text-main: var(--editorial-parchment);
+  --text-muted: var(--editorial-muted);
+  --text-dim: var(--editorial-dim);
+  --gold-primary: var(--cerulean);
+  --gold-light: var(--cerulean-light);
+  --gold-glow: var(--cerulean-light);
+  --border-subtle: var(--hairline);
+  --border-gold: var(--cerulean-hairline);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, button, input, select, textarea {
+  font-family: var(--font-newsreader);
+  font-optical-sizing: auto;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--editorial-parchment);
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+/* Custom Editorial Scrollbar System for all lists and containers */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 23, 42, 0.2) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 23, 42, 0.3);
+}
+
+.custom-scrollbar,
+.editorial-scrollbar {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 23, 42, 0.2) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar,
+.editorial-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track,
+.editorial-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.editorial-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.15);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover,
+.editorial-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 23, 42, 0.3);
+}
+
+/* Typography Headings */
+h1, h2, h3, h4, .serif-heading {
+  font-family: var(--font-editorial-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--editorial-parchment);
+}
+
+.editorial-headline {
+  font-family: var(--font-editorial-serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.editorial-italic {
+  font-family: var(--font-editorial-serif);
+  font-style: italic;
+}
+
+.editorial-caption, .editorial-mono {
+  font-family: var(--font-editorial-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--editorial-muted);
+}
+
+.editorial-lead {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--editorial-ivory);
+}
+
+/* Minimalist Accent Gradients */
+.gold-gradient-text,
+.duotone-gradient-text,
+.cerulean-gradient-text {
+  color: var(--cerulean);
+}
+
+.jasper-gradient-text {
+  color: var(--jasper);
+}
+
+/* Utility Classes */
+.text-cerulean { color: var(--cerulean) !important; }
+.text-cerulean-light { color: var(--cerulean-light) !important; }
+.text-jasper { color: var(--jasper) !important; }
+.text-jasper-light { color: var(--jasper-light) !important; }
+.bg-cerulean { background-color: var(--cerulean) !important; }
+.bg-jasper { background-color: var(--jasper) !important; }
+.border-cerulean { border-color: var(--cerulean) !important; }
+.border-jasper { border-color: var(--jasper) !important; }
+
+.badge-cerulean {
+  background: var(--cerulean-bg);
+  border: 1px solid var(--cerulean-hairline);
+  color: var(--cerulean);
+}
+
+.badge-jasper {
+  background: var(--jasper-bg);
+  border: 1px solid var(--jasper-hairline);
+  color: var(--jasper);
+}
+
+.duotone-rule {
+  height: 1px;
+  background: var(--hairline);
+  border: none;
+}
+
+/* Minimalist Hairline Borders & Frames */
+.hairline-top {
+  border-top: 1px solid var(--hairline);
+}
+
+.hairline-bottom {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.hairline-right {
+  border-right: 1px solid var(--hairline);
+}
+
+.editorial-frame {
+  position: relative;
+  border: 1px solid var(--hairline);
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+/* Glass panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-panel-gold {
+  background: var(--editorial-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--cerulean-hairline);
+}
+
+/* Buttons - Minimalist Style */
+.btn-primary {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: var(--editorial-parchment);
+  color: #ffffff;
+  border: 1px solid var(--editorial-parchment);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--cerulean);
+  border-color: var(--cerulean);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #ffffff;
+  color: var(--editorial-ivory);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-subtle);
+  border-color: var(--cerulean);
+  color: var(--cerulean);
+}
+
+.btn-secondary.active {
+  background: var(--cerulean-bg);
+  border-color: var(--cerulean);
+  color: var(--cerulean);
+}
+
+/* Badges - Minimalist Tags */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 1px solid var(--hairline);
+  background: rgba(15, 23, 42, 0.04);
+}
+
+.badge-role {
+  background: var(--cerulean-bg);
+  border: 1px solid var(--cerulean-hairline);
+  color: var(--cerulean-ice);
+}
+
+.badge-veda { background: var(--veda-bg); border-color: var(--veda-color); color: var(--veda-color); }
+.badge-lokheim { background: var(--lokheim-bg); border-color: var(--lokheim-color); color: var(--lokheim-color); }
+.badge-afata { background: var(--afata-bg); border-color: var(--afata-color); color: var(--afata-color); }
+.badge-norman { background: var(--norman-bg); border-color: var(--norman-color); color: var(--norman-color); }
+.badge-carano { background: var(--carano-bg); border-color: var(--carano-color); color: var(--carano-color); }
+.badge-mist { background: var(--mist-bg); border-color: var(--mist-color); color: var(--mist-color); }
+.badge-tan_lien_hiep { background: var(--tan-lien-hiep-bg); border-color: var(--tan-lien-hiep-color); color: var(--tan-lien-hiep-color); }
+.badge-long_chi_quoc { background: var(--long-chi-quoc-bg); border-color: var(--long-chi-quoc-color); color: var(--long-chi-quoc-color); }
+.badge-dao_suong_mu { background: var(--dao-suong-mu-bg); border-color: var(--dao-suong-mu-color); color: var(--dao-suong-mu-color); }
+.badge-hai_linh_tran { background: var(--hai-linh-tran-bg); border-color: var(--hai-linh-tran-color); color: var(--hai-linh-tran-color); }
+.badge-sa_mac_helios { background: var(--sa-mac-helios-bg); border-color: var(--sa-mac-helios-color); color: var(--sa-mac-helios-color); }
+.badge-hoi_am_hoang { background: var(--hoi-am-hoang-bg); border-color: var(--hoi-am-hoang-color); color: var(--hoi-am-hoang-color); }
+
+/* Editorial Pull Quote */
+.editorial-quote {
+  position: relative;
+  font-family: var(--font-editorial-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--editorial-ivory);
+  padding-left: 20px;
+  border-left: 2px solid var(--cerulean);
+}
+
+/* Modal Lock and Scroll Containment */
+body.modal-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+  animation: fadeIn 0.25s ease-out;
+  overscroll-behavior: contain;
+  overflow: hidden;
+}
+
+/* Ensure all modal containers strictly contain their scrolling without chaining to background */
+.minimal-modal-container,
+.minimal-faction-container,
+.minimal-editor-container,
+.editorial-modal-container,
+.editorial-faction-container,
+.editorial-image-editor-container,
+.editorial-category-modal-container {
+  overscroll-behavior: contain;
+}
+
+.minimal-modal-body,
+.minimal-faction-body,
+.minimal-editor-body,
+.editorial-spread-grid,
+.classified-spread-grid,
+.faction-monograph-body,
+.editor-form-body,
+.category-modal-body {
+  overscroll-behavior: contain;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}

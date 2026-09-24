@@ -1,0 +1,592 @@
+/* ==========================================================================
+   LANDMARK DETAIL MODAL — Modal Chi Tiết Khảo Cứu Địa Danh (Editorial)
+   Phong cách Bách Khoa Toàn Thư Athanor · 100% Newsreader Serif & Clean Light Aesthetic
+   ========================================================================== */
+
+.landmark-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: modal-fade-in 0.25s ease-out;
+}
+
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.landmark-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid var(--hairline-strong, rgba(15, 23, 42, 0.16));
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.25);
+  color: var(--editorial-parchment, #0f172a);
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: var(--hairline-strong, rgba(15, 23, 42, 0.16)) transparent;
+}
+
+.landmark-modal-card::-webkit-scrollbar {
+  width: 6px;
+}
+.landmark-modal-card::-webkit-scrollbar-thumb {
+  background: var(--hairline-strong, rgba(15, 23, 42, 0.16));
+  border-radius: 4px;
+}
+
+/* Nút Đóng Editorial */
+.landmark-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--hairline, rgba(15, 23, 42, 0.08));
+  color: var(--editorial-muted, #64748b);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.landmark-close-btn:hover {
+  background: #ffffff;
+  border-color: var(--jasper-hairline, rgba(225, 29, 72, 0.25));
+  color: var(--jasper, #e11d48);
+  transform: scale(1.06);
+}
+
+/* Banner Hình Ảnh 2.5D Living Diorama */
+.landmark-hero-banner {
+  position: relative;
+  width: 100%;
+  height: 290px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.living-diorama {
+  cursor: crosshair;
+}
+
+.landmark-parallax-plane {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1);
+  will-change: transform;
+}
+
+.landmark-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Sương mù vi phân động */
+.diorama-mist-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: repeat-x;
+  background-size: 200% 100%;
+}
+
+.diorama-mist-1 {
+  background-image: radial-gradient(ellipse 60% 40% at 50% 80%, rgba(203, 213, 225, 0.25) 0%, transparent 70%);
+  animation: mistDrift 18s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+.diorama-mist-2 {
+  background-image: radial-gradient(ellipse 80% 50% at 30% 90%, rgba(148, 163, 184, 0.2) 0%, transparent 65%);
+  animation: mistDriftRev 24s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+@keyframes mistDrift {
+  0% { transform: translateX(-8%) scaleY(1); opacity: 0.5; }
+  50% { transform: translateX(4%) scaleY(1.1); opacity: 0.8; }
+  100% { transform: translateX(-4%) scaleY(0.95); opacity: 0.6; }
+}
+
+@keyframes mistDriftRev {
+  0% { transform: translateX(6%) scaleY(0.9); opacity: 0.4; }
+  50% { transform: translateX(-6%) scaleY(1.05); opacity: 0.75; }
+  100% { transform: translateX(3%) scaleY(1); opacity: 0.5; }
+}
+
+/* Đốm hạt ánh sáng lơ lửng */
+.diorama-light-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.diorama-light-particles .particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  animation: floatParticle 8s infinite ease-in-out;
+}
+
+.particle.p1 { left: 20%; top: 70%; animation-delay: 0s; animation-duration: 9s; }
+.particle.p2 { left: 45%; top: 60%; animation-delay: 2s; animation-duration: 7s; }
+.particle.p3 { left: 70%; top: 75%; animation-delay: 4s; animation-duration: 11s; }
+.particle.p4 { left: 85%; top: 50%; animation-delay: 1.5s; animation-duration: 8.5s; }
+.particle.p5 { left: 35%; top: 40%; animation-delay: 3.5s; animation-duration: 10s; }
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  25% { opacity: 0.85; }
+  75% { opacity: 0.85; }
+  100% { transform: translateY(-70px) translateX(25px); opacity: 0; }
+}
+
+.landmark-banner-gradient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.15) 55%, transparent 100%);
+}
+
+.landmark-banner-badge {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  z-index: 5;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--hairline-strong, rgba(15, 23, 42, 0.16));
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--editorial-parchment, #0f172a);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+}
+
+/* Nút khảo cứu toàn cảnh điện ảnh */
+.landmark-inspect-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--hairline-strong, rgba(15, 23, 42, 0.16));
+  color: var(--editorial-parchment, #0f172a);
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.landmark-inspect-btn .inspect-icon {
+  color: var(--cerulean, #0284c7);
+  font-size: 12px;
+}
+
+.landmark-inspect-btn:hover {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+}
+
+.landmark-inspect-btn:hover .inspect-icon {
+  color: var(--cerulean-light, #38bdf8);
+}
+
+/* Thân Modal Editorial */
+.landmark-body {
+  padding: 28px 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.landmark-header-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.landmark-tag {
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--cerulean, #0284c7);
+  text-transform: uppercase;
+}
+
+.landmark-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--editorial-parchment, #0f172a);
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.landmark-short-desc {
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--editorial-ivory, #334155);
+  margin: 4px 0 0 0;
+}
+
+/* Section Header Editorial */
+.section-label {
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--editorial-muted, #64748b);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--hairline, rgba(15, 23, 42, 0.08));
+}
+
+/* Thư viện hình ảnh tư liệu */
+.landmark-gallery-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.landmark-gallery-thumb {
+  position: relative;
+  height: 115px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--hairline-strong, rgba(15, 23, 42, 0.16));
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.landmark-gallery-thumb.active-thumb {
+  border: 2px solid var(--cerulean, #0284c7);
+  box-shadow: 0 0 0 2px var(--cerulean-bg, rgba(2, 132, 199, 0.12)), 0 4px 16px rgba(15, 23, 42, 0.1);
+}
+
+.landmark-gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.landmark-gallery-thumb:hover img {
+  transform: scale(1.06);
+}
+
+.thumb-indicator {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--editorial-parchment, #0f172a);
+  border: 1px solid var(--hairline-strong, rgba(15, 23, 42, 0.16));
+}
+
+/* Phần Biên Niên Sử Ký & Bối Cảnh (Lore) */
+.landmark-lore-text {
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--editorial-ivory, #334155);
+  background: #f8fafc;
+  border: 1px solid var(--hairline, rgba(15, 23, 42, 0.08));
+  padding: 20px 24px;
+  border-radius: 8px;
+  margin: 0;
+}
+
+/* Danh sách Tướng & Anh hùng liên quan */
+.landmark-heroes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.landmark-hero-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid var(--hairline-strong, rgba(15, 23, 42, 0.14));
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+  transition: all 0.2s ease;
+}
+
+.landmark-hero-chip:hover {
+  background: #f8fafc;
+  border-color: var(--cerulean, #0284c7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.hero-chip-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--hairline-strong, rgba(15, 23, 42, 0.16));
+  flex-shrink: 0;
+}
+
+.hero-chip-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow: hidden;
+}
+
+.hero-chip-name {
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--editorial-parchment, #0f172a);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hero-chip-role {
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 11px;
+  color: var(--editorial-muted, #64748b);
+}
+
+.hero-chip-arrow {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--editorial-muted, #64748b);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.landmark-hero-chip:hover .hero-chip-arrow {
+  transform: translateX(3px);
+  color: var(--cerulean, #0284c7);
+}
+
+@media (max-width: 640px) {
+  .landmark-body {
+    padding: 20px;
+    gap: 18px;
+  }
+  .landmark-title {
+    font-size: 22px;
+  }
+  .landmark-hero-banner {
+    height: 200px;
+  }
+  .landmark-gallery-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   FULLSCREEN CINEMATIC INSPECTOR LIGHTBOX (Editorial Museum Lightbox)
+   ========================================================================== */
+.landmark-fullscreen-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  animation: modal-fade-in 0.3s ease-out;
+  user-select: none;
+}
+
+.fullscreen-header {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.fullscreen-title-box {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.fullscreen-badge {
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--cerulean-light, #38bdf8);
+}
+
+.fullscreen-landmark-name {
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.fullscreen-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fullscreen-ctrl-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fullscreen-ctrl-btn:hover {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.fullscreen-close-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  transition: all 0.2s ease;
+}
+
+.fullscreen-close-btn:hover {
+  background: var(--jasper, #e11d48);
+  border-color: var(--jasper, #e11d48);
+  transform: scale(1.05);
+}
+
+.fullscreen-image-stage {
+  flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  cursor: grab;
+}
+
+.fullscreen-image-wrapper {
+  position: relative;
+  max-width: 100%;
+  max-height: 80vh;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fullscreen-active-img {
+  display: block;
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+}
+
+.fullscreen-mist-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: repeat-x;
+}
+
+.fullscreen-footer-hint {
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.03em;
+  padding-top: 8px;
+  text-align: center;
+}

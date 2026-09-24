@@ -1,0 +1,518 @@
+[
+  {
+    "id": "ilumia",
+    "name": "Ilumia"
+  },
+  {
+    "id": "lauriel",
+    "name": "Lauriel"
+  },
+  {
+    "id": "tulen",
+    "name": "Tulen"
+  },
+  {
+    "id": "bright",
+    "name": "Bright"
+  },
+  {
+    "id": "yorn",
+    "name": "Yorn"
+  },
+  {
+    "id": "xeniel",
+    "name": "Xeniel"
+  },
+  {
+    "id": "ignis",
+    "name": "Ignis"
+  },
+  {
+    "id": "gildur",
+    "name": "Gildur"
+  },
+  {
+    "id": "jinna",
+    "name": "Jinna"
+  },
+  {
+    "id": "enzo",
+    "name": "Enzo"
+  },
+  {
+    "id": "laville",
+    "name": "Laville"
+  },
+  {
+    "id": "zata",
+    "name": "Zata"
+  },
+  {
+    "id": "rouie",
+    "name": "Rouie"
+  },
+  {
+    "id": "teeri",
+    "name": "Terri"
+  },
+  {
+    "id": "omega",
+    "name": "Omega"
+  },
+  {
+    "id": "ngokhong",
+    "name": "Ngộ Không"
+  },
+  {
+    "id": "edras",
+    "name": "Edras"
+  },
+  {
+    "id": "chaugnar",
+    "name": "Chaugnar"
+  },
+  {
+    "id": "toro",
+    "name": "Toro"
+  },
+  {
+    "id": "ormarr",
+    "name": "Ormarr"
+  },
+  {
+    "id": "volkath",
+    "name": "Volkath"
+  },
+  {
+    "id": "maloch",
+    "name": "Maloch"
+  },
+  {
+    "id": "veera",
+    "name": "Veera"
+  },
+  {
+    "id": "marja",
+    "name": "Marja"
+  },
+  {
+    "id": "kahlii",
+    "name": "Kahlii"
+  },
+  {
+    "id": "mganga",
+    "name": "Mganga"
+  },
+  {
+    "id": "preyta",
+    "name": "Preyta"
+  },
+  {
+    "id": "mina",
+    "name": "Mina"
+  },
+  {
+    "id": "taara",
+    "name": "Taara"
+  },
+  {
+    "id": "arduin",
+    "name": "Arduin"
+  },
+  {
+    "id": "skud",
+    "name": "Skud"
+  },
+  {
+    "id": "natalya",
+    "name": "Natalya"
+  },
+  {
+    "id": "raz",
+    "name": "Raz"
+  },
+  {
+    "id": "nakroth",
+    "name": "Nakroth"
+  },
+  {
+    "id": "grakk",
+    "name": "Grakk"
+  },
+  {
+    "id": "zephys",
+    "name": "Zephys"
+  },
+  {
+    "id": "kriknak",
+    "name": "Kriknak"
+  },
+  {
+    "id": "omen",
+    "name": "Omen"
+  },
+  {
+    "id": "zip",
+    "name": "Zip"
+  },
+  {
+    "id": "aleister",
+    "name": "Aleister"
+  },
+  {
+    "id": "hayate",
+    "name": "Hayate"
+  },
+  {
+    "id": "errol",
+    "name": "Errol"
+  },
+  {
+    "id": "lorion",
+    "name": "Lorion"
+  },
+  {
+    "id": "dextra",
+    "name": "Dextra"
+  },
+  {
+    "id": "sinestrea",
+    "name": "Sinestrea"
+  },
+  {
+    "id": "veres",
+    "name": "Veres"
+  },
+  {
+    "id": "telannas",
+    "name": "Tel'Annas"
+  },
+  {
+    "id": "krixi",
+    "name": "Krixi"
+  },
+  {
+    "id": "zill",
+    "name": "Ma Phong Ba"
+  },
+  {
+    "id": "lumburr",
+    "name": "Lumburr"
+  },
+  {
+    "id": "zuka",
+    "name": "Zuka"
+  },
+  {
+    "id": "teemee",
+    "name": "TeeMee"
+  },
+  {
+    "id": "baldum",
+    "name": "Baldum"
+  },
+  {
+    "id": "helen",
+    "name": "Helen"
+  },
+  {
+    "id": "payna",
+    "name": "Payna"
+  },
+  {
+    "id": "lindis",
+    "name": "Lindis"
+  },
+  {
+    "id": "arum",
+    "name": "Arum"
+  },
+  {
+    "id": "dyadia",
+    "name": "Dyadia"
+  },
+  {
+    "id": "slimz",
+    "name": "Slimz"
+  },
+  {
+    "id": "fennik",
+    "name": "Fennik"
+  },
+  {
+    "id": "kilgroth",
+    "name": "Kil'Groth"
+  },
+  {
+    "id": "cresht",
+    "name": "Cresht"
+  },
+  {
+    "id": "ybneth",
+    "name": "Y'bneth"
+  },
+  {
+    "id": "krizzix",
+    "name": "Krizzix"
+  },
+  {
+    "id": "elandorr",
+    "name": "Eland'orr"
+  },
+  {
+    "id": "aya",
+    "name": "Aya"
+  },
+  {
+    "id": "biron",
+    "name": "Biron"
+  },
+  {
+    "id": "tamyn",
+    "name": "Tamyn"
+  },
+  {
+    "id": "arthur",
+    "name": "Arthur"
+  },
+  {
+    "id": "thane",
+    "name": "Thane"
+  },
+  {
+    "id": "florentino",
+    "name": "Florentino"
+  },
+  {
+    "id": "astrid",
+    "name": "Astrid"
+  },
+  {
+    "id": "allain",
+    "name": "Allain"
+  },
+  {
+    "id": "butterfly",
+    "name": "Butterfly"
+  },
+  {
+    "id": "valhein",
+    "name": "Valhein"
+  },
+  {
+    "id": "violet",
+    "name": "Violet"
+  },
+  {
+    "id": "richter",
+    "name": "Richter"
+  },
+  {
+    "id": "alice",
+    "name": "Alice"
+  },
+  {
+    "id": "rourke",
+    "name": "Rourke"
+  },
+  {
+    "id": "moren",
+    "name": "Moren"
+  },
+  {
+    "id": "kaine",
+    "name": "Kaine"
+  },
+  {
+    "id": "stuart",
+    "name": "Stuart"
+  },
+  {
+    "id": "batman",
+    "name": "Batman"
+  },
+  {
+    "id": "superman",
+    "name": "Superman"
+  },
+  {
+    "id": "the_flash",
+    "name": "The Flash"
+  },
+  {
+    "id": "wonder_woman",
+    "name": "Wonder Woman"
+  },
+  {
+    "id": "bijan",
+    "name": "Bijan"
+  },
+  {
+    "id": "charlotte",
+    "name": "Charlotte"
+  },
+  {
+    "id": "iggy",
+    "name": "Iggy"
+  },
+  {
+    "id": "garret",
+    "name": "Garret"
+  },
+  {
+    "id": "dirak",
+    "name": "Dirak"
+  },
+  {
+    "id": "sephera",
+    "name": "Sephera"
+  },
+  {
+    "id": "keera",
+    "name": "Keera"
+  },
+  {
+    "id": "ishar",
+    "name": "Ishar"
+  },
+  {
+    "id": "annette",
+    "name": "Annette"
+  },
+  {
+    "id": "ata",
+    "name": "Ata"
+  },
+  {
+    "id": "paine",
+    "name": "Paine"
+  },
+  {
+    "id": "liliana",
+    "name": "Liliana"
+  },
+  {
+    "id": "max",
+    "name": "Max"
+  },
+  {
+    "id": "wisp",
+    "name": "Wisp"
+  },
+  {
+    "id": "celica",
+    "name": "Celica"
+  },
+  {
+    "id": "roxie",
+    "name": "Roxie"
+  },
+  {
+    "id": "capheny",
+    "name": "Capheny"
+  },
+  {
+    "id": "goverra",
+    "name": "Goverra"
+  },
+  {
+    "id": "bonnie",
+    "name": "Bonnie"
+  },
+  {
+    "id": "quillen",
+    "name": "Quillen"
+  },
+  {
+    "id": "thorne",
+    "name": "Thorne"
+  },
+  {
+    "id": "amily",
+    "name": "Amily"
+  },
+  {
+    "id": "elsu",
+    "name": "Elsu"
+  },
+  {
+    "id": "yue",
+    "name": "Yue"
+  },
+  {
+    "id": "lu_bo",
+    "name": "Lữ Bố"
+  },
+  {
+    "id": "dieu_thuyen",
+    "name": "Điêu Thuyền"
+  },
+  {
+    "id": "qi",
+    "name": "Qi"
+  },
+  {
+    "id": "ryoma",
+    "name": "Ryoma"
+  },
+  {
+    "id": "yan",
+    "name": "Yan"
+  },
+  {
+    "id": "airi",
+    "name": "Airi"
+  },
+  {
+    "id": "tachi",
+    "name": "Tachi"
+  },
+  {
+    "id": "aoi",
+    "name": "Aoi"
+  },
+  {
+    "id": "dolia",
+    "name": "Dolia"
+  },
+  {
+    "id": "hainuo",
+    "name": "Hainuo"
+  },
+  {
+    "id": "murad",
+    "name": "Murad"
+  },
+  {
+    "id": "yena",
+    "name": "Yena"
+  },
+  {
+    "id": "trieu_van",
+    "name": "Triệu Vân"
+  },
+  {
+    "id": "ming",
+    "name": "Ming"
+  },
+  {
+    "id": "erin",
+    "name": "Erin"
+  },
+  {
+    "id": "bill",
+    "name": "Bill"
+  },
+  {
+    "id": "gark",
+    "name": "Gark"
+  },
+  {
+    "id": "wiro",
+    "name": "Wiro"
+  },
+  {
+    "id": "flowborn",
+    "name": "Flowborn"
+  }
+]

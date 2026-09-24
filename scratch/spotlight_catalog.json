@@ -1,0 +1,1199 @@
+[
+  {
+    "category": "Tháp Quang Minh (Veda)",
+    "count": 20,
+    "heroes": [
+      {
+        "id": "ilumia",
+        "name": "Ilumia",
+        "title": "Nữ Thần Ánh Sáng",
+        "factionId": "veda",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Ilumia Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Ilumia%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "lauriel",
+        "name": "Lauriel",
+        "title": "Đại Thiên Thần",
+        "factionId": "veda",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Lauriel Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Lauriel%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "tulen",
+        "name": "Tulen",
+        "title": "Hoàng Tử Lôi Quang",
+        "factionId": "veda",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Tulen Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Tulen%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "bright",
+        "name": "Bright",
+        "title": "Truyền Nhân Ánh Sáng",
+        "factionId": "veda",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Bright Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Bright%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "yorn",
+        "name": "Yorn",
+        "title": "Mũi Tên Mặt Trời",
+        "factionId": "veda",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Yorn Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Yorn%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "xeniel",
+        "name": "Xeniel",
+        "title": "Sứ Giả Thần Thánh",
+        "factionId": "veda",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Xeniel Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Xeniel%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "ignis",
+        "name": "Ignis",
+        "title": "Sứ Giả Lôi Hỏa",
+        "factionId": "veda",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Ignis Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Ignis%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "gildur",
+        "name": "Gildur",
+        "title": "Vua Hoàng Kim",
+        "factionId": "veda",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Gildur Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Gildur%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "jinna",
+        "name": "Jinna",
+        "title": "Đại Thiền Sư",
+        "factionId": "veda",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Jinna Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Jinna%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "enzo",
+        "name": "Enzo",
+        "title": "Kẻ Hành Quyết",
+        "factionId": "veda",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Enzo Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Enzo%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "laville",
+        "name": "Laville",
+        "title": "Tay Súng Ánh Sáng",
+        "factionId": "veda",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Laville Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Laville%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "zata",
+        "name": "Zata",
+        "title": "Dạ Ưng Tộc",
+        "factionId": "veda",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Zata Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Zata%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "rouie",
+        "name": "Rouie",
+        "title": "Ánh Sáng Không Gian",
+        "factionId": "veda",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Rouie Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Rouie%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "teeri",
+        "name": "Terri",
+        "title": "Sĩ Quan Tình Báo",
+        "factionId": "veda",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Terri Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Terri%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "omega",
+        "name": "Omega",
+        "title": "Cỗ Máy Tri Giác",
+        "factionId": "veda",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Omega Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Omega%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "ngokhong",
+        "name": "Ngộ Không",
+        "title": "Tề Thiên Đại Thánh",
+        "factionId": "veda",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Ngộ Không Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Ng%E1%BB%99%20Kh%C3%B4ng%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "edras",
+        "name": "Edras",
+        "title": "Đấng Sáng Tạo",
+        "factionId": "veda",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Edras Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Edras%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "chaugnar",
+        "name": "Chaugnar",
+        "title": "Sứ Giả Hỗn Mang Cổ",
+        "factionId": "veda",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Chaugnar Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Chaugnar%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "toro",
+        "name": "Toro",
+        "title": "Ngưu Ma Vương",
+        "factionId": "veda",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Toro Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Toro%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "ormarr",
+        "name": "Ormarr",
+        "title": "Chiến Binh Cuồng Nộ",
+        "factionId": "veda",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Ormarr Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Ormarr%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      }
+    ]
+  },
+  {
+    "category": "Vực Hỗn Mang (Lokheim)",
+    "count": 26,
+    "heroes": [
+      {
+        "id": "volkath",
+        "name": "Volkath",
+        "title": "Chúa Tể Hắc Ám",
+        "factionId": "lokheim",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Volkath Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Volkath%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "maloch",
+        "name": "Maloch",
+        "title": "Ma Vương Quản Ngục",
+        "factionId": "lokheim",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Maloch Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Maloch%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "veera",
+        "name": "Veera",
+        "title": "Nữ Vương Ma Tộc",
+        "factionId": "lokheim",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Veera Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Veera%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "marja",
+        "name": "Marja",
+        "title": "Oán Hồn Vực Thẳm",
+        "factionId": "lokheim",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Marja Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Marja%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "kahlii",
+        "name": "Kahlii",
+        "title": "Nữ Tư Tế Sa Đọa",
+        "factionId": "lokheim",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Kahlii Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Kahlii%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "mganga",
+        "name": "Mganga",
+        "title": "Tên Hề Cuồng Tín",
+        "factionId": "lokheim",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Mganga Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Mganga%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "preyta",
+        "name": "Preyta",
+        "title": "Kỵ Sĩ Dịch Bệnh",
+        "factionId": "lokheim",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Preyta Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Preyta%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "mina",
+        "name": "Mina",
+        "title": "Nữ Hoàng Lưỡi Hái",
+        "factionId": "lokheim",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Mina Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Mina%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "taara",
+        "name": "Taara",
+        "title": "Búa Cuồng Bạo",
+        "factionId": "lokheim",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Taara Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Taara%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "arduin",
+        "name": "Arduin",
+        "title": "Linh Hồn Băng Giá",
+        "factionId": "lokheim",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Arduin Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Arduin%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "skud",
+        "name": "Skud",
+        "title": "Cỗ Máy Cuồng Nộ",
+        "factionId": "lokheim",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Skud Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Skud%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "natalya",
+        "name": "Natalya",
+        "title": "Hiểm Họa Địa Ngục",
+        "factionId": "lokheim",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Natalya Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Natalya%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "raz",
+        "name": "Raz",
+        "title": "Quyền Vương",
+        "factionId": "lokheim",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Raz Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Raz%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "nakroth",
+        "name": "Nakroth",
+        "title": "Phán Quan Cõi Âm",
+        "factionId": "lokheim",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Nakroth Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Nakroth%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "grakk",
+        "name": "Grakk",
+        "title": "Kẻ Phàm Ăn",
+        "factionId": "lokheim",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Grakk Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Grakk%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "zephys",
+        "name": "Zephys",
+        "title": "Lưỡi Hái Tử Thần",
+        "factionId": "lokheim",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Zephys Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Zephys%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "kriknak",
+        "name": "Kriknak",
+        "title": "Bọ Sát Thủ",
+        "factionId": "lokheim",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Kriknak Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Kriknak%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "omen",
+        "name": "Omen",
+        "title": "Quỷ Kiếm Cuồng Sát",
+        "factionId": "lokheim",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Omen Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Omen%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "zip",
+        "name": "Zip",
+        "title": "Ma Thú Háu Ăn",
+        "factionId": "lokheim",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Zip Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Zip%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "aleister",
+        "name": "Aleister",
+        "title": "Quang Vinh Phản Đồ",
+        "factionId": "lokheim",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Aleister Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Aleister%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "hayate",
+        "name": "Hayate",
+        "title": "Ninja Tà Long",
+        "factionId": "lokheim",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Hayate Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Hayate%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "errol",
+        "name": "Errol",
+        "title": "Cánh Tay Ác Ma",
+        "factionId": "lokheim",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Errol Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Errol%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "lorion",
+        "name": "Lorion",
+        "title": "Hắc Ma Pháp Sư",
+        "factionId": "lokheim",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Lorion Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Lorion%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "dextra",
+        "name": "Dextra",
+        "title": "Huyết Luân Cưa",
+        "factionId": "hoi_am_hoang",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Dextra Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Dextra%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "sinestrea",
+        "name": "Sinestrea",
+        "title": "Huyết Kiếm",
+        "factionId": "hoi_am_hoang",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Sinestrea Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Sinestrea%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "veres",
+        "name": "Veres",
+        "title": "Huyết Xích Lôi Ảnh",
+        "factionId": "hoi_am_hoang",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Veres Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Veres%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      }
+    ]
+  },
+  {
+    "category": "Khu Rừng Nguyên Sinh (Afata)",
+    "count": 22,
+    "heroes": [
+      {
+        "id": "telannas",
+        "name": "Tel'Annas",
+        "title": "Nữ Vương Tinh Linh",
+        "factionId": "afata",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Tel'Annas Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Tel'Annas%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "krixi",
+        "name": "Krixi",
+        "title": "Tinh Linh Thiên Nhiên",
+        "factionId": "afata",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Krixi Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Krixi%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "zill",
+        "name": "Ma Phong Ba",
+        "title": "Ma Phong Ba",
+        "factionId": "afata",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Ma Phong Ba Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Ma%20Phong%20Ba%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "lumburr",
+        "name": "Lumburr",
+        "title": "Khổng Lồ Lục Địa",
+        "factionId": "afata",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Lumburr Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Lumburr%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "zuka",
+        "name": "Zuka",
+        "title": "Đại Sư Gấu Trúc",
+        "factionId": "afata",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Zuka Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Zuka%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "teemee",
+        "name": "TeeMee",
+        "title": "Trái Tim Biển Cả",
+        "factionId": "afata",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng TeeMee Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20TeeMee%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "baldum",
+        "name": "Baldum",
+        "title": "Nhân Mã Cuồng Phong",
+        "factionId": "afata",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Baldum Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Baldum%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "helen",
+        "name": "Helen",
+        "title": "Tiên Linh Hòa Bình",
+        "factionId": "afata",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Helen Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Helen%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "payna",
+        "name": "Payna",
+        "title": "Thần Linh Hộ Mệnh Cổ",
+        "factionId": "afata",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Payna Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Payna%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "lindis",
+        "name": "Lindis",
+        "title": "Ẩn Sĩ Nguyệt Tộc",
+        "factionId": "afata",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Lindis Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Lindis%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "arum",
+        "name": "Arum",
+        "title": "Nữ Tu Sĩ Sư Tử",
+        "factionId": "afata",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Arum Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Arum%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "dyadia",
+        "name": "Dyadia",
+        "title": "Tinh Linh Nhân Duyên",
+        "factionId": "afata",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Dyadia Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Dyadia%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "slimz",
+        "name": "Slimz",
+        "title": "Thỏ Tài Phiệt",
+        "factionId": "afata",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Slimz Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Slimz%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "fennik",
+        "name": "Fennik",
+        "title": "Cáo Siêu Thanh",
+        "factionId": "afata",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Fennik Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Fennik%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "kilgroth",
+        "name": "Kil'Groth",
+        "title": "Đồ Tể Đại Dương",
+        "factionId": "afata",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Kil'Groth Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Kil'Groth%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "cresht",
+        "name": "Cresht",
+        "title": "Chiến Binh Thủy Quái",
+        "factionId": "afata",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Cresht Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Cresht%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "ybneth",
+        "name": "Y'bneth",
+        "title": "Đại Thụ Viễn Cổ",
+        "factionId": "afata",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Y'bneth Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Y'bneth%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "krizzix",
+        "name": "Krizzix",
+        "title": "Bậc Thầy Ẩn Nấp",
+        "factionId": "afata",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Krizzix Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Krizzix%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "elandorr",
+        "name": "Eland'orr",
+        "title": "Du Hiệp Tinh Linh",
+        "factionId": "afata",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Eland'orr Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Eland'orr%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "aya",
+        "name": "Aya",
+        "title": "Ca Sĩ Tinh Linh",
+        "factionId": "afata",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Aya Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Aya%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "biron",
+        "name": "Biron",
+        "title": "Lôi Kình Dũng Sĩ",
+        "factionId": "tu_do",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Biron Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Biron%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "tamyn",
+        "name": "Tamyn",
+        "title": "Tinh Linh Thượng Cổ",
+        "factionId": "afata",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Tamyn Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Tamyn%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      }
+    ]
+  },
+  {
+    "category": "Lâu Đài Khởi Nguyên (Norman)",
+    "count": 22,
+    "heroes": [
+      {
+        "id": "arthur",
+        "name": "Arthur",
+        "title": "Thanh Kiếm Chính Nghĩa",
+        "factionId": "norman",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Arthur Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Arthur%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "thane",
+        "name": "Thane",
+        "title": "Thanh Gươm Quả Cảm",
+        "factionId": "norman",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Thane Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Thane%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "florentino",
+        "name": "Florentino",
+        "title": "Tay Kiếm Hào Hoa",
+        "factionId": "norman",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Florentino Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Florentino%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "astrid",
+        "name": "Astrid",
+        "title": "Nữ Kiếm Sư",
+        "factionId": "norman",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Astrid Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Astrid%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "allain",
+        "name": "Allain",
+        "title": "Cuồng Kiếm Sĩ",
+        "factionId": "norman",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Allain Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Allain%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "butterfly",
+        "name": "Butterfly",
+        "title": "Siêu Cấp Sát Thủ",
+        "factionId": "norman",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Butterfly Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Butterfly%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "valhein",
+        "name": "Valhein",
+        "title": "Thợ Săn Ác Quỷ",
+        "factionId": "norman",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Valhein Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Valhein%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "violet",
+        "name": "Violet",
+        "title": "Tay Súng Quả Cảm",
+        "factionId": "norman",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Violet Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Violet%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "richter",
+        "name": "Richter",
+        "title": "Lưỡi Gươm Đoạt Hồn",
+        "factionId": "norman",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Richter Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Richter%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "alice",
+        "name": "Alice",
+        "title": "Tiểu Thần Thiện Lương",
+        "factionId": "norman",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Alice Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Alice%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "rourke",
+        "name": "Rourke",
+        "title": "Lão Tướng Can Trường",
+        "factionId": "norman",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Rourke Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Rourke%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "moren",
+        "name": "Moren",
+        "title": "Thợ Cương Thiết",
+        "factionId": "norman",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Moren Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Moren%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "kaine",
+        "name": "Kaine",
+        "title": "Bá Tước Huyết Tộc",
+        "factionId": "norman",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Kaine Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Kaine%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "stuart",
+        "name": "Stuart",
+        "title": "Tay Hề Quái Kiệt",
+        "factionId": "tu_do",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Stuart Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Stuart%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "batman",
+        "name": "Batman",
+        "title": "Hiệp Sĩ Bóng Đêm",
+        "factionId": "tu_do",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Batman Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Batman%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "superman",
+        "name": "Superman",
+        "title": "Siêu Nhân",
+        "factionId": "tu_do",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Superman Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Superman%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "the_flash",
+        "name": "The Flash",
+        "title": "Tia Chớp Bí Ẩn",
+        "factionId": "tu_do",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng The Flash Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20The%20Flash%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "wonder_woman",
+        "name": "Wonder Woman",
+        "title": "Chiến Thần Amazon",
+        "factionId": "tu_do",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Wonder Woman Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Wonder%20Woman%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "bijan",
+        "name": "Bijan",
+        "title": "Khách Hành Hương Thao Cát",
+        "factionId": "norman",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Bijan Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Bijan%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "charlotte",
+        "name": "Charlotte",
+        "title": "Nữ Kiếm Sĩ Hoa Hồng",
+        "factionId": "norman",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Charlotte Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Charlotte%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "iggy",
+        "name": "Iggy",
+        "title": "Ma Lửa Nổi Loạn",
+        "factionId": "norman",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Iggy Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Iggy%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "garret",
+        "name": "Garret",
+        "title": "Thợ Săn Rồng",
+        "factionId": "norman",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Garret Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Garret%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      }
+    ]
+  },
+  {
+    "category": "Học Viện Phép Thuật (Carano)",
+    "count": 19,
+    "heroes": [
+      {
+        "id": "dirak",
+        "name": "Dirak",
+        "title": "Pháp Vương Ánh Sáng",
+        "factionId": "carano",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Dirak Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Dirak%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "sephera",
+        "name": "Sephera",
+        "title": "Nữ Thần Dòng Nước",
+        "factionId": "carano",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Sephera Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Sephera%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "keera",
+        "name": "Keera",
+        "title": "Tiểu Thư Ma Quái",
+        "factionId": "carano",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Keera Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Keera%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "ishar",
+        "name": "Ishar",
+        "title": "Tí Nị Năng Động",
+        "factionId": "carano",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Ishar Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Ishar%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "annette",
+        "name": "Annette",
+        "title": "Nàng Gió Tinh Linh",
+        "factionId": "carano",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Annette Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Annette%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "ata",
+        "name": "Ata",
+        "title": "Mèo Đi Phượt",
+        "factionId": "carano",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Ata Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Ata%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "paine",
+        "name": "Paine",
+        "title": "Hoà Nhạc Tử Thần",
+        "factionId": "carano",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Paine Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Paine%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "liliana",
+        "name": "Liliana",
+        "title": "Cửu Vĩ Linh Hồ",
+        "factionId": "carano",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Liliana Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Liliana%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "max",
+        "name": "Max",
+        "title": "Cơ Động Thần Đồng",
+        "factionId": "tan_lien_hiep",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Max Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Max%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "wisp",
+        "name": "Wisp",
+        "title": "Pháo Thủ Tinh Nghịch",
+        "factionId": "tan_lien_hiep",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Wisp Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Wisp%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "celica",
+        "name": "Celica",
+        "title": "Pháo Đạn Hạng Nặng",
+        "factionId": "tan_lien_hiep",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Celica Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Celica%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "roxie",
+        "name": "Roxie",
+        "title": "Đốm Lửa Tinh Lịch",
+        "factionId": "tan_lien_hiep",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Roxie Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Roxie%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "capheny",
+        "name": "Capheny",
+        "title": "Đại Bác Năng Lượng",
+        "factionId": "tan_lien_hiep",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Capheny Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Capheny%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "goverra",
+        "name": "Goverra",
+        "title": "Tiễn Thần Cơ Giới",
+        "factionId": "tan_lien_hiep",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Goverra Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Goverra%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "bonnie",
+        "name": "Bonnie",
+        "title": "Thiếu Nữ Tia Chớp",
+        "factionId": "tan_lien_hiep",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Bonnie Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Bonnie%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "quillen",
+        "name": "Quillen",
+        "title": "Đao Phủ Bóng Đêm",
+        "factionId": "hoi_am_hoang",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Quillen Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Quillen%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "thorne",
+        "name": "Thorne",
+        "title": "Kẻ Phát Minh Ám Ảnh",
+        "factionId": "hoi_am_hoang",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Thorne Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Thorne%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "amily",
+        "name": "Amily",
+        "title": "Nữ Quyền Vương",
+        "factionId": "hoi_am_hoang",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Amily Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Amily%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "elsu",
+        "name": "Elsu",
+        "title": "Xạ Thủ Tinh Anh",
+        "factionId": "carano",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Elsu Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Elsu%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      }
+    ]
+  },
+  {
+    "category": "Phương Đông & Ngoại Vực",
+    "count": 20,
+    "heroes": [
+      {
+        "id": "yue",
+        "name": "Yue",
+        "title": "Ngọc Nữ Cung Cấm",
+        "factionId": "long_chi_quoc",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Yue Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Yue%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "lu_bo",
+        "name": "Lữ Bố",
+        "title": "Vô Địch Chiến Thần",
+        "factionId": "long_chi_quoc",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Lữ Bố Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20L%E1%BB%AF%20B%E1%BB%91%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "dieu_thuyen",
+        "name": "Điêu Thuyền",
+        "title": "Tuyệt Sắc Giai Nhân",
+        "factionId": "long_chi_quoc",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Điêu Thuyền Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20%C4%90i%C3%AAu%20Thuy%E1%BB%81n%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "qi",
+        "name": "Qi",
+        "title": "Võ Sư Bánh Bao",
+        "factionId": "long_chi_quoc",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Qi Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Qi%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "ryoma",
+        "name": "Ryoma",
+        "title": "Kiếm Khách Hoàng Gia",
+        "factionId": "long_chi_quoc",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Ryoma Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Ryoma%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "yan",
+        "name": "Yan",
+        "title": "Họa Sư Thần Bút",
+        "factionId": "long_chi_quoc",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Yan Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Yan%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "airi",
+        "name": "Airi",
+        "title": "Ninja Rồng Thần",
+        "factionId": "dao_suong_mu",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Airi Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Airi%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "tachi",
+        "name": "Tachi",
+        "title": "Cuồng Ma Trảm",
+        "factionId": "dao_suong_mu",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Tachi Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Tachi%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "aoi",
+        "name": "Aoi",
+        "title": "Long Thảo Thần Nữ",
+        "factionId": "dao_suong_mu",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Aoi Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Aoi%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "dolia",
+        "name": "Dolia",
+        "title": "Tiên Cá Đại Dương",
+        "factionId": "hai_linh_tran",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Dolia Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Dolia%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "hainuo",
+        "name": "Hainuo",
+        "title": "Thần Tử Vận Mệnh",
+        "factionId": "hai_linh_tran",
+        "role": "Pháp Sư",
+        "spotlightQuery": "Tâm Điểm Tướng Hainuo Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Hainuo%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "murad",
+        "name": "Murad",
+        "title": "Lãng Khách Thời Không",
+        "factionId": "sa_mac_helios",
+        "role": "Sát Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Murad Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Murad%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "yena",
+        "name": "Yena",
+        "title": "Vũ Cơ Bán Nguyệt",
+        "factionId": "sa_mac_helios",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Yena Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Yena%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "trieu_van",
+        "name": "Triệu Vân",
+        "title": "Kỵ Sĩ Rồng",
+        "factionId": "long_chi_quoc",
+        "role": "Đấu Sĩ",
+        "spotlightQuery": "Tâm Điểm Tướng Triệu Vân Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Tri%E1%BB%87u%20V%C3%A2n%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "ming",
+        "name": "Ming",
+        "title": "Tiên Nhân Bói Toán",
+        "factionId": "long_chi_quoc",
+        "role": "Trợ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Ming Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Ming%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "erin",
+        "name": "Erin",
+        "title": "Nàng Tiên Ánh Sáng",
+        "factionId": "dao_suong_mu",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Erin Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Erin%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "bill",
+        "name": "Bill",
+        "title": "Đấu Sĩ Rừng Sâu",
+        "factionId": "dao_suong_mu",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Bill Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Bill%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "gark",
+        "name": "Gark",
+        "title": "Ma Tượng Sa Mạc",
+        "factionId": "dao_suong_mu",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Gark Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Gark%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "wiro",
+        "name": "Wiro",
+        "title": "Rìu Thần Bão Tố",
+        "factionId": "tu_do",
+        "role": "Đỡ Đòn",
+        "spotlightQuery": "Tâm Điểm Tướng Wiro Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Wiro%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      },
+      {
+        "id": "flowborn",
+        "name": "Flowborn",
+        "title": "Dòng Chảy Vô Tận",
+        "factionId": "tu_do",
+        "role": "Xạ Thủ",
+        "spotlightQuery": "Tâm Điểm Tướng Flowborn Liên Quân Mobile",
+        "youtubeSearchUrl": "https://www.youtube.com/results?search_query=T%C3%A2m%20%C4%90i%E1%BB%83m%20T%C6%B0%E1%BB%9Bng%20Flowborn%20Li%C3%AAn%20Qu%C3%A2n%20Mobile"
+      }
+    ]
+  }
+]
