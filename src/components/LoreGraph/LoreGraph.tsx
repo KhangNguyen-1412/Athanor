@@ -61,6 +61,7 @@ export const LoreGraph: React.FC<LoreGraphProps> = ({ onSelectHero }) => {
   }, []);
 
   const allHeroes = useMemo(() => {
+    void overrideTick;
     return heroCustomStore.getActiveHeroes(HEROES_DATA);
   }, [overrideTick]);
 
@@ -734,7 +735,7 @@ export const LoreGraph: React.FC<LoreGraphProps> = ({ onSelectHero }) => {
                             y="0"
                             fill="#f87171"
                             fontSize="9.5"
-                            fontFamily="var(--font-editorial-mono)"
+                            fontFamily="var(--font-newsreader)"
                             letterSpacing="0.1em"
                             textAnchor="middle"
                             fontWeight="600"
@@ -760,7 +761,7 @@ export const LoreGraph: React.FC<LoreGraphProps> = ({ onSelectHero }) => {
                             y="0"
                             fill="#38bdf8"
                             fontSize="9.5"
-                            fontFamily="var(--font-editorial-mono)"
+                            fontFamily="var(--font-newsreader)"
                             letterSpacing="0.1em"
                             textAnchor="middle"
                             fontWeight="600"

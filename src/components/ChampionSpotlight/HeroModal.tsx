@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import type { Hero, Skill, HeroForm } from '../../types/athanor';
 import { FACTIONS_DATA } from '../../data/factionsData';
 import { HEROES_DATA } from '../../data/heroesData';
@@ -44,9 +44,7 @@ export const HeroModal: React.FC<HeroModalProps> = ({
 }) => {
   useBodyScrollLock(Boolean(hero));
 
-  if (!hero) return null;
-
-  const [currentHero, setCurrentHero] = useState<Hero>(() => heroCustomStore.applyOverride(hero));
+  const [currentHero, setCurrentHero] = useState<Hero | null>(() => hero ? heroCustomStore.applyOverride(hero) : null);
   const [isEditorOpen, setIsEditorOpen] = useState<boolean>(false);
   const [overrideTick, setOverrideTick] = useState<number>(0);
   const [activeTab, setActiveTab] = useState<ModalTab>('combat');
@@ -54,9 +52,11 @@ export const HeroModal: React.FC<HeroModalProps> = ({
   const [activeFormId, setActiveFormId] = useState<string | null>(null);
 
   useEffect(() => {
-    setCurrentHero(heroCustomStore.applyOverride(hero));
-    setActiveSkillIndex(0);
-    setActiveTab('combat');
+    if (hero) {
+      setCurrentHero(heroCustomStore.applyOverride(hero));
+      setActiveSkillIndex(0);
+      setActiveTab('combat');
+    }
   }, [hero, overrideTick]);
 
   useEffect(() => {
@@ -67,11 +67,57 @@ export const HeroModal: React.FC<HeroModalProps> = ({
   useEffect(() => {
     const handleUpdate = () => {
       setOverrideTick((v) => v + 1);
-      setCurrentHero(heroCustomStore.applyOverride(hero));
+      if (hero) {
+        setCurrentHero(heroCustomStore.applyOverride(hero));
+      }
     };
     window.addEventListener('athanor-hero-updated', handleUpdate);
     return () => window.removeEventListener('athanor-hero-updated', handleUpdate);
-  }, []);
+  }, [hero]);
+
+  // Find relationships — apply heroCustomStore override (excluding deleted heroes)
+  const allHeroesWithOverrides = useMemo(() => {
+    return heroCustomStore.getActiveHeroes(HEROES_DATA);
+  }, [overrideTick]);
+
+  const heroRelations = useMemo(() => {
+    if (!currentHero) return [];
+    return heroCustomStore.getHeroRelations(currentHero.id).map((rel) => {
+      const isSource = rel.sourceHeroId === currentHero.id;
+      const relatedHeroId = isSource ? rel.targetHeroId : rel.sourceHeroId;
+      const relatedHero = allHeroesWithOverrides.find((h) => h.id === relatedHeroId);
+      return {
+        ...rel,
+        relatedHero
+      };
+    }).filter((r) => r.relatedHero !== undefined);
+  }, [currentHero, allHeroesWithOverrides]);
+
+  // Direct related heroes
+  const directRelatedHeroes = useMemo(() => {
+    if (!currentHero) return [];
+    return (currentHero.relatedHeroIds || [])
+      .map((rId) => allHeroesWithOverrides.find((h) => h.id === rId))
+      .filter((h): h is Hero => h !== undefined);
+  }, [currentHero, allHeroesWithOverrides]);
+
+  if (!hero || !currentHero) return null;
+
+  const slotLabels: Record<string, string> = {
+    passive: 'Nội tại',
+    skill1: 'Chiêu 1',
+    skill2: 'Chiêu 2',
+    ultimate: 'Chiêu cuối'
+  };
+
+  const getDamageBadgeClass = (dmgType: string) => {
+    switch (dmgType) {
+      case 'Chuẩn': return 'dmg-badge-true';
+      case 'Phép': return 'dmg-badge-magic';
+      case 'Vật lý': return 'dmg-badge-physical';
+      default: return 'dmg-badge-support';
+    }
+  };
 
   const handleDeleteHero = () => {
     const confirmed = window.confirm(
@@ -105,40 +151,6 @@ export const HeroModal: React.FC<HeroModalProps> = ({
   const displayRole = activeForm?.role ?? currentHero.role;
 
   const activeSkill: Skill = displaySkills[activeSkillIndex] || displaySkills[0];
-
-  // Find relationships — apply heroCustomStore override (excluding deleted heroes)
-  const allHeroesWithOverrides = heroCustomStore.getActiveHeroes(HEROES_DATA);
-
-  const heroRelations = heroCustomStore.getHeroRelations(currentHero.id).map((rel) => {
-    const isSource = rel.sourceHeroId === currentHero.id;
-    const relatedHeroId = isSource ? rel.targetHeroId : rel.sourceHeroId;
-    const relatedHero = allHeroesWithOverrides.find((h) => h.id === relatedHeroId);
-    return {
-      ...rel,
-      relatedHero
-    };
-  }).filter((r) => r.relatedHero !== undefined);
-
-  // Direct related heroes
-  const directRelatedHeroes = (currentHero.relatedHeroIds || [])
-    .map((rId) => allHeroesWithOverrides.find((h) => h.id === rId))
-    .filter((h): h is Hero => h !== undefined);
-
-  const slotLabels: Record<string, string> = {
-    passive: 'Nội tại',
-    skill1: 'Chiêu 1',
-    skill2: 'Chiêu 2',
-    ultimate: 'Chiêu cuối'
-  };
-
-  const getDamageBadgeClass = (dmgType: string) => {
-    switch (dmgType) {
-      case 'Chuẩn': return 'dmg-badge-true';
-      case 'Phép': return 'dmg-badge-magic';
-      case 'Vật lý': return 'dmg-badge-physical';
-      default: return 'dmg-badge-support';
-    }
-  };
 
   const paragraphs = currentHero.lore.split('\n\n');
   const specialLoreParagraphs = (currentHero.specialLore || currentHero.lore).split('\n\n');

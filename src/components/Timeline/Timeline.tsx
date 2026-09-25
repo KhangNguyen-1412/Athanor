@@ -22,7 +22,7 @@ interface TimelineProps {
 }
 
 export const Timeline: React.FC<TimelineProps> = ({ onSelectHero, onNavigateToMap }) => {
-  const [, setTick] = useState<number>(0);
+  const [tick, setTick] = useState<number>(0);
   const [activeEraId, setActiveEraId] = useState<string>(TIMELINE_ERAS[0]?.id || 'era-genesis');
   const [unlockedSeals, setUnlockedSeals] = useState<Record<string, boolean>>({});
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -32,6 +32,11 @@ export const Timeline: React.FC<TimelineProps> = ({ onSelectHero, onNavigateToMa
     window.addEventListener('athanor-hero-updated', handleUpdate);
     return () => window.removeEventListener('athanor-hero-updated', handleUpdate);
   }, []);
+
+  const allActiveHeroes = useMemo(() => {
+    void tick;
+    return heroCustomStore.getActiveHeroes(HEROES_DATA);
+  }, [tick]);
 
   // Tự động phát hiện Kỷ nguyên đang hiển thị trong tầm mắt
   useEffect(() => {
@@ -139,9 +144,7 @@ export const Timeline: React.FC<TimelineProps> = ({ onSelectHero, onNavigateToMa
         {TIMELINE_ERAS.map((era, index) => {
           const faction = FACTIONS_DATA[era.keyFactionId];
           const roman = romanEpochs[index] || `${index + 1}`;
-          const featuredHeroes = heroCustomStore
-            .getActiveHeroes(HEROES_DATA)
-            .filter((h) => era.featuredHeroIds.includes(h.id));
+          const featuredHeroes = allActiveHeroes.filter((h) => era.featuredHeroIds.includes(h.id));
 
           const clashLeftHero = era.clash ? getHero(era.clash.leftHeroId) : null;
           const clashRightHero = era.clash ? getHero(era.clash.rightHeroId) : null;

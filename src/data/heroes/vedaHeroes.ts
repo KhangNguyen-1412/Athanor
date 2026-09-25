@@ -1009,7 +1009,7 @@ export const VEDA_HEROES: Hero[] = [
     role: 'Pháp Sư',
     secondaryRole: 'Trợ Thủ',
     avatarUrl: 'https://lienquan.garena.vn/wp-content/uploads/2025/10/edrashead-2.jpg',
-    bannerUrl: 'https://lienquan.garena.vn/wp-content/uploads/2025/10/59500.jpg',
+    bannerUrl: '/gods/edras-light-god.jpg',
     quote: 'Vạn vật sinh sôi từ ánh sáng, và trật tự sẽ tái sinh từ hư vô!',
     stats: { damage: 9, toughness: 7, mobility: 6, crowdControl: 8, difficulty: 8 },
     skills: [

@@ -1,4 +1,4 @@
-import type { Hero, LoreRelation, FactionId, HeroRole } from '../types/athanor';
+import type { Hero, LoreRelation, FactionId, HeroRole, HeroSkin } from '../types/athanor';
 import { RELATIONS_DATA } from '../data/relationsData';
 
 export interface CustomHeroOverride {
@@ -35,6 +35,7 @@ export interface CustomHeroOverride {
   bannerUrl?: string;
   skillIcons?: Record<string, string>; // slot -> url
   spotlightVideoUrl?: string;
+  skins?: HeroSkin[];
 }
 
 // Backward compatibility alias
@@ -44,12 +45,31 @@ const STORAGE_KEY_PREFIX = 'athanor_hero_override_';
 const RELATIONS_STORAGE_KEY = 'athanor_custom_relations_v1';
 const DELETED_HEROES_STORAGE_KEY = 'athanor_deleted_heroes_v1';
 
+// Fast in-memory caches to prevent synchronous localStorage bottlenecks on every frame / render
+const _overridesCache = new Map<string, CustomHeroOverride | null>();
+let _deletedHeroIdsCache: string[] | null = null;
+let _relationsCache: LoreRelation[] | null = null;
+let _heroRelationsCache = new Map<string, LoreRelation[]>();
+let _activeHeroesCache: Hero[] | null = null;
+let _deletedHeroesCache: Hero[] | null = null;
+
+function invalidateAllCaches() {
+  _activeHeroesCache = null;
+  _deletedHeroesCache = null;
+}
+
 export const heroCustomStore = {
   getOverride(heroId: string): CustomHeroOverride | null {
+    if (_overridesCache.has(heroId)) {
+      return _overridesCache.get(heroId) ?? null;
+    }
     try {
       const data = localStorage.getItem(STORAGE_KEY_PREFIX + heroId);
-      return data ? JSON.parse(data) : null;
+      const parsed = data ? JSON.parse(data) : null;
+      _overridesCache.set(heroId, parsed);
+      return parsed;
     } catch {
+      _overridesCache.set(heroId, null);
       return null;
     }
   },
@@ -57,6 +77,8 @@ export const heroCustomStore = {
   saveOverride(heroId: string, media: CustomHeroOverride) {
     try {
       localStorage.setItem(STORAGE_KEY_PREFIX + heroId, JSON.stringify(media));
+      _overridesCache.set(heroId, media);
+      invalidateAllCaches();
       window.dispatchEvent(new CustomEvent('athanor-hero-updated', { detail: { heroId } }));
     } catch (e) {
       console.error('Failed to save hero override:', e);
@@ -66,6 +88,8 @@ export const heroCustomStore = {
   clearOverride(heroId: string) {
     try {
       localStorage.removeItem(STORAGE_KEY_PREFIX + heroId);
+      _overridesCache.set(heroId, null);
+      invalidateAllCaches();
       window.dispatchEvent(new CustomEvent('athanor-hero-updated', { detail: { heroId } }));
     } catch (e) {
       console.error('Failed to clear hero override:', e);
@@ -74,10 +98,15 @@ export const heroCustomStore = {
 
   // ===== DELETED HEROES STORAGE =====
   getDeletedHeroIds(): string[] {
+    if (_deletedHeroIdsCache !== null) {
+      return _deletedHeroIdsCache;
+    }
     try {
       const data = localStorage.getItem(DELETED_HEROES_STORAGE_KEY);
-      return data ? JSON.parse(data) : [];
+      _deletedHeroIdsCache = data ? JSON.parse(data) : [];
+      return _deletedHeroIdsCache!;
     } catch {
+      _deletedHeroIdsCache = [];
       return [];
     }
   },
@@ -91,7 +120,9 @@ export const heroCustomStore = {
       const current = this.getDeletedHeroIds();
       if (!current.includes(heroId)) {
         current.push(heroId);
+        _deletedHeroIdsCache = [...current];
         localStorage.setItem(DELETED_HEROES_STORAGE_KEY, JSON.stringify(current));
+        invalidateAllCaches();
         window.dispatchEvent(
           new CustomEvent('athanor-hero-updated', {
             detail: { heroId, action: 'delete' }
@@ -106,7 +137,9 @@ export const heroCustomStore = {
   restoreHero(heroId: string) {
     try {
       const current = this.getDeletedHeroIds().filter((id) => id !== heroId);
+      _deletedHeroIdsCache = [...current];
       localStorage.setItem(DELETED_HEROES_STORAGE_KEY, JSON.stringify(current));
+      invalidateAllCaches();
       window.dispatchEvent(
         new CustomEvent('athanor-hero-updated', {
           detail: { heroId, action: 'restore' }
@@ -120,6 +153,8 @@ export const heroCustomStore = {
   restoreAllHeroes() {
     try {
       localStorage.removeItem(DELETED_HEROES_STORAGE_KEY);
+      _deletedHeroIdsCache = [];
+      invalidateAllCaches();
       window.dispatchEvent(
         new CustomEvent('athanor-hero-updated', {
           detail: { action: 'restore_all' }
@@ -131,36 +166,56 @@ export const heroCustomStore = {
   },
 
   getActiveHeroes(heroesList: Hero[]): Hero[] {
+    if (_activeHeroesCache !== null) {
+      return _activeHeroesCache;
+    }
     const deletedSet = new Set(this.getDeletedHeroIds());
-    return heroesList
+    const result = heroesList
       .filter((h) => !deletedSet.has(h.id))
       .map((h) => this.applyOverride(h));
+    _activeHeroesCache = result;
+    return result;
   },
 
   getDeletedHeroes(heroesList: Hero[]): Hero[] {
+    if (_deletedHeroesCache !== null) {
+      return _deletedHeroesCache;
+    }
     const deletedSet = new Set(this.getDeletedHeroIds());
-    return heroesList
+    const result = heroesList
       .filter((h) => deletedSet.has(h.id))
       .map((h) => this.applyOverride(h));
+    _deletedHeroesCache = result;
+    return result;
   },
 
   // ===== RELATIONS STORAGE =====
   getRelations(): LoreRelation[] {
+    if (_relationsCache !== null) {
+      return _relationsCache;
+    }
     try {
       const data = localStorage.getItem(RELATIONS_STORAGE_KEY);
       if (data) {
-        return JSON.parse(data);
+        _relationsCache = JSON.parse(data);
+        return _relationsCache!;
       }
     } catch {
       // fallback
     }
+    _relationsCache = RELATIONS_DATA;
     return RELATIONS_DATA;
   },
 
   getHeroRelations(heroId: string): LoreRelation[] {
-    return this.getRelations().filter(
+    if (_heroRelationsCache.has(heroId)) {
+      return _heroRelationsCache.get(heroId)!;
+    }
+    const relations = this.getRelations().filter(
       (rel) => rel.sourceHeroId === heroId || rel.targetHeroId === heroId
     );
+    _heroRelationsCache.set(heroId, relations);
+    return relations;
   },
 
   saveHeroRelations(heroId: string, relations: LoreRelation[]) {
@@ -172,6 +227,9 @@ export const heroCustomStore = {
       );
       // Append the updated relations for this hero
       const updated = [...remaining, ...relations];
+      _relationsCache = updated;
+      _heroRelationsCache.clear();
+      invalidateAllCaches();
       localStorage.setItem(RELATIONS_STORAGE_KEY, JSON.stringify(updated));
       window.dispatchEvent(new CustomEvent('athanor-hero-updated', { detail: { heroId } }));
     } catch (e) {
@@ -191,6 +249,9 @@ export const heroCustomStore = {
         (rel) => rel.sourceHeroId === heroId || rel.targetHeroId === heroId
       );
       const updated = [...remaining, ...original];
+      _relationsCache = updated;
+      _heroRelationsCache.clear();
+      invalidateAllCaches();
       localStorage.setItem(RELATIONS_STORAGE_KEY, JSON.stringify(updated));
       window.dispatchEvent(new CustomEvent('athanor-hero-updated', { detail: { heroId } }));
     } catch (e) {
@@ -238,7 +299,8 @@ export const heroCustomStore = {
         difficulty: override?.stats?.difficulty !== undefined ? override.stats.difficulty : hero.stats.difficulty,
       },
       relatedHeroIds: combinedRelatedIds,
-      spotlightVideoUrl: override?.spotlightVideoUrl !== undefined ? override.spotlightVideoUrl : hero.spotlightVideoUrl
+      spotlightVideoUrl: override?.spotlightVideoUrl !== undefined ? override.spotlightVideoUrl : hero.spotlightVideoUrl,
+      skins: override?.skins !== undefined ? override.skins : hero.skins
     };
 
     if (

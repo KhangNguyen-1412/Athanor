@@ -307,6 +307,27 @@ export const AuthenticFactionLogo: React.FC<FactionLogoProps> = ({
         </svg>
       );
 
+    // =========================================================================
+    // 7. VƯƠNG QUỐC RỒNG (LONG TRÌ QUỐC / DRAGON KINGDOM)
+    // Huy hiệu Vương Quốc Rồng chính thức
+    // =========================================================================
+    case 'long_chi_quoc':
+      return (
+        <img
+          src="/theluc/Vương quốc rồng.png"
+          alt="Vương Quốc Rồng"
+          width={size}
+          height={size}
+          style={{ objectFit: 'contain', filter: 'drop-shadow(0 2px 8px rgba(234, 88, 12, 0.45))' }}
+          className={`authentic-faction-logo dragon-kingdom-logo ${className}`}
+          onError={(e) => {
+            const target = e.currentTarget;
+            target.onerror = null;
+            target.src = '/theluc/vuongquocrong.png';
+          }}
+        />
+      );
+
     default:
       return (
         <svg viewBox="0 0 100 100" width={size} height={size} className={className}>

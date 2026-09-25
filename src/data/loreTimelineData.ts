@@ -10,7 +10,7 @@ export const TIMELINE_ERAS: TimelineEra[] = [
     period: 'Kỷ Nguyên Thứ Nhất',
     title: 'Đấng Sáng Tạo Edras & Sự Ra Đời Của Thế Giới Athanor',
     themeColor: '#eab308',
-    bannerUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1400&q=80',
+    bannerUrl: '/gods/edras-light-god.jpg',
     quote: {
       text: 'Từ Suối Nguồn Khởi Nguyên, Ánh Sáng đã phân định ranh giới cho sinh mệnh và bóng tối. Nhưng trong hạt mầm của trật tự vĩnh hằng, bóng đen của sự hoài nghi đã bắt đầu bén rễ.',
       author: 'Đấng Sáng Tạo Edras',
@@ -73,7 +73,7 @@ export const TIMELINE_ERAS: TimelineEra[] = [
     period: 'Kỷ Nguyên Thứ Hai',
     title: '5 Thủ Lĩnh Ly Khai, Vua Arthur & Mũi Tên Tel\'Annas',
     themeColor: '#ef4444',
-    bannerUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1400&q=80',
+    bannerUrl: '/gods/lokheim-dark-god.jpg',
     quote: {
       text: 'Mũi tên này không bắn vì thù hận của riêng ta, mà bắn vì hơi thở của từng đóa hoa linh, từng nhành cây trên cõi Elborn thiêng liêng!',
       author: 'Nữ Vương Tel\'Annas',
@@ -262,7 +262,7 @@ export const TIMELINE_ERAS: TimelineEra[] = [
     period: 'Kỷ Nguyên Hiện Tại',
     title: 'Volkath Tái Sinh & Cuộc Đụng Độ Cuối Cùng Của Các Thế Lực',
     themeColor: '#a855f7',
-    bannerUrl: 'https://images.unsplash.com/photo-1514539079130-25950c84af65?auto=format&fit=crop&w=1400&q=80',
+    bannerUrl: '/athanor-battle-watermark.jpg',
     quote: {
       text: 'Ngươi tưởng bóng tối đã kết thúc sau mũi tên ngàn năm trước sao? Ta trở lại không phải để đòi ngai vàng, mà để nuốt chửng toàn bộ thế giới của các ngươi!',
       author: 'Chúa Tể Volkath',

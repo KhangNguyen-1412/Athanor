@@ -10,7 +10,9 @@ export type FactionId =
   | 'hai_linh_tran'
   | 'sa_mac_helios'
   | 'hoi_am_hoang'
-  | 'tu_do';
+  | 'tu_do'
+  | 'okka'
+  | 'unaffiliated';
 
 export type HeroRole = 
   | 'Đấu Sĩ' 
@@ -49,6 +51,36 @@ export interface HeroStats {
   difficulty: number;   // 1 - 10
 }
 
+export type SkinTier = 
+  | 'Mặc Định'
+  | 'Bậc A'
+  | 'Bậc S'
+  | 'Bậc S+'
+  | 'Bậc SS'
+  | 'Bậc SSS'
+  | 'Tuyệt Sắc'
+  | 'Thứ Nguyên Vệ Thần'
+  | 'Hạn Chế'
+  | 'Tiệc Bãi Biển'
+  | 'Collab'
+  | 'FMVP'
+  | 'Quán Quân'
+  | 'Học Đường'
+  | 'Thưởng Hạng'
+  | 'Hạn Định';
+
+export interface HeroSkin {
+  id: string;
+  name: string;
+  tier?: SkinTier | string;
+  bannerUrl: string;
+  avatarUrl?: string;
+  quote?: string;
+  description?: string;
+  releaseYear?: string;
+  effects?: string[];
+}
+
 export interface SecretProfile {
   organizationRole: string; // Vai trò trong hội / bang phái / tổ chức
   otherStory: string;       // Câu chuyện khác / giai thoại bên lề
@@ -71,6 +103,7 @@ export interface Hero {
   battleTips: string[];
   recommendedItems: string[];
   relatedHeroIds: string[];
+  skins?: HeroSkin[];
 
   // Đa hình thái (dành cho tướng như Flowborn có nhiều dạng)
   altForms?: HeroForm[];           // Các hình thái LQ hiện tại (ngoài form chính)
@@ -100,6 +133,8 @@ export interface Faction {
   color: string;
   secondaryColor: string;
   bannerUrl: string;
+  logoUrl?: string;
+  emblemUrl?: string;
   coordinates3D: [number, number, number];
   keyLandmarks: string[];
   heroIds: string[];

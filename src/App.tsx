@@ -1,14 +1,40 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { Header } from './components/Header/Header';
 import type { NavTab } from './components/Header/Header';
-import { AthanorCanvas } from './components/Map3D/AthanorCanvas';
-import { FactionDetailModal } from './components/FactionDetail/FactionDetailModal';
 import { HeroRoster } from './components/ChampionSpotlight/HeroRoster';
-import { HeroDetailPage } from './components/ChampionSpotlight/HeroDetailPage';
-import { LoreGraph } from './components/LoreGraph/LoreGraph';
-import { Timeline } from './components/Timeline/Timeline';
 import type { Faction, Hero } from './types/athanor';
 import './App.css';
+
+// Lazy load heavy subsystems on-demand to ensure instantaneous first-paint
+const AthanorCanvas = lazy(() =>
+  import('./components/Map3D/AthanorCanvas').then((m) => ({ default: m.AthanorCanvas }))
+);
+const HeroDetailPage = lazy(() =>
+  import('./components/ChampionSpotlight/HeroDetailPage').then((m) => ({ default: m.HeroDetailPage }))
+);
+const LoreGraph = lazy(() =>
+  import('./components/LoreGraph/LoreGraph').then((m) => ({ default: m.LoreGraph }))
+);
+const Timeline = lazy(() =>
+  import('./components/Timeline/Timeline').then((m) => ({ default: m.Timeline }))
+);
+const FactionDetailModal = lazy(() =>
+  import('./components/FactionDetail/FactionDetailModal').then((m) => ({ default: m.FactionDetailModal }))
+);
+
+function AthanorSectionLoader({ message = 'Đang tải dữ liệu Athanor...' }: { message?: string }) {
+  return (
+    <div className="athanor-section-loader" role="status" aria-live="polite">
+      <div className="loader-portal">
+        <div className="loader-ring-outer" />
+        <div className="loader-ring-inner" />
+        <div className="loader-core-emblem">✦</div>
+      </div>
+      <span className="loader-text">{message}</span>
+      <span className="loader-sub">ATHANOR ARCHIVES • ARENA OF VALOR</span>
+    </div>
+  );
+}
 
 export function App() {
   const [currentTab, setCurrentTab] = useState<NavTab>('roster');
@@ -37,22 +63,26 @@ export function App() {
       {/* Main View Area */}
       <main className="athanor-main-content">
         {selectedHero ? (
-          <HeroDetailPage
-            hero={selectedHero}
-            onBack={() => setSelectedHero(null)}
-            onSelectHero={handleSelectHero}
-          />
+          <Suspense fallback={<AthanorSectionLoader message="Đang khởi tạo hồ sơ tác chiến anh hùng..." />}>
+            <HeroDetailPage
+              hero={selectedHero}
+              onBack={() => setSelectedHero(null)}
+              onSelectHero={handleSelectHero}
+            />
+          </Suspense>
         ) : (
           <>
             {currentTab === 'map' && (
               <div className="map-view-wrapper">
-                <AthanorCanvas
-                  onSelectFaction={handleSelectFaction}
-                  selectedFactionId={selectedFaction?.id}
-                  onSelectHero={handleSelectHero}
-                  focusTarget={mapFocusTarget}
-                  onClearFocusTarget={() => setMapFocusTarget(null)}
-                />
+                <Suspense fallback={<AthanorSectionLoader message="Đang kiến tạo không gian 3D Đại Lục Athanor..." />}>
+                  <AthanorCanvas
+                    onSelectFaction={handleSelectFaction}
+                    selectedFactionId={selectedFaction?.id}
+                    onSelectHero={handleSelectHero}
+                    focusTarget={mapFocusTarget}
+                    onClearFocusTarget={() => setMapFocusTarget(null)}
+                  />
+                </Suspense>
               </div>
             )}
 
@@ -61,13 +91,17 @@ export function App() {
             )}
 
             {currentTab === 'lore' && (
-              <LoreGraph onSelectHero={handleSelectHero} />
+              <Suspense fallback={<AthanorSectionLoader message="Đang giải mã mạng lưới liên kết nhân vật..." />}>
+                <LoreGraph onSelectHero={handleSelectHero} />
+              </Suspense>
             )}
 
             {currentTab === 'timeline' && (
-              <Timeline
-                onSelectHero={handleSelectHero}
-              />
+              <Suspense fallback={<AthanorSectionLoader message="Đang mở cuộn giấy biên niên sử sử thi..." />}>
+                <Timeline
+                  onSelectHero={handleSelectHero}
+                />
+              </Suspense>
             )}
           </>
         )}
@@ -75,14 +109,16 @@ export function App() {
 
       {/* Faction Detail Modal */}
       {selectedFaction && (
-        <FactionDetailModal
-          faction={selectedFaction}
-          onClose={() => setSelectedFaction(null)}
-          onSelectHero={(hero) => {
-            setSelectedFaction(null);
-            setSelectedHero(hero);
-          }}
-        />
+        <Suspense fallback={null}>
+          <FactionDetailModal
+            faction={selectedFaction}
+            onClose={() => setSelectedFaction(null)}
+            onSelectHero={(hero) => {
+              setSelectedFaction(null);
+              setSelectedHero(hero);
+            }}
+          />
+        </Suspense>
       )}
 
       {/* Minimalist Global Footer */}
@@ -90,12 +126,17 @@ export function App() {
         <footer className="minimal-footer">
           <div className="minimal-footer-inner">
             <div className="footer-brand-row">
-              <span className="footer-brand-name">ATHANOR</span>
+              <img 
+                src="/lienquan-gold-logo.png" 
+                alt="Liên Quân Mobile" 
+                className="footer-lq-logo" 
+              />
+              <span className="footer-brand-name">ATHANOR ARCHIVES</span>
               <span className="footer-dot">•</span>
-              <span className="footer-subtext">Bách khoa toàn thư 129 tướng & thế lực Liên Quân Mobile</span>
+              <span className="footer-subtext">Bách khoa toàn thư 129 tướng & 1,228 trang phục Liên Quân Mobile</span>
             </div>
             <p className="footer-copyright">
-              Bản quyền hình ảnh và tư liệu thuộc về Garena & Level Infinite. Dự án cộng đồng phi lợi nhuận.
+              Bản quyền hình ảnh, thương hiệu và tư liệu thuộc về Garena & Level Infinite / Tencent Games. Tuyển tập Athanor phi lợi nhuận.
             </p>
           </div>
         </footer>

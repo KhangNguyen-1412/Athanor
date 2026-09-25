@@ -511,7 +511,7 @@
   font-size: 10px;
   letter-spacing: 0.14em;
   color: var(--shield-accent, #fef08a);
-  font-family: var(--font-editorial-mono, monospace);
+  font-family: var(--font-newsreader);
   text-transform: uppercase;
 }
 
@@ -960,7 +960,7 @@
   letter-spacing: 0.12em;
   color: rgba(220, 205, 170, 0.7);
   text-transform: uppercase;
-  font-family: var(--font-editorial-mono, monospace);
+  font-family: var(--font-newsreader);
 }
 
 .tooltip-faction-name {
@@ -1002,7 +1002,7 @@
   color: #38bdf8;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 8px;
-  font-family: var(--font-editorial-mono, monospace);
+  font-family: var(--font-newsreader);
 }
 
 /* --------------------------------------------------------------------------
@@ -1578,7 +1578,7 @@
 
 .beacon-title {
   color: #fef08a;
-  font-family: 'Cinzel', serif, Georgia;
+  font-family: var(--font-playfair);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.5px;

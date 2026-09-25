@@ -3,17 +3,20 @@
    ========================================================================== */
 
 .minimal-modal-container {
-  width: 100%;
-  max-width: 900px;
-  max-height: 88vh;
+  width: 920px;
+  max-width: calc(100vw - 48px);
+  height: 85vh;
+  max-height: 820px;
+  min-height: 580px;
   display: flex;
   flex-direction: column;
   background: #ffffff;
-  border: 1px solid var(--hairline-strong, rgba(15, 23, 42, 0.16));
+  border: 1px solid var(--hairline-strong, rgba(28, 25, 23, 0.16));
   border-radius: 12px;
-  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.25);
+  box-shadow: 0 30px 80px rgba(28, 25, 23, 0.22);
   overflow: hidden;
   overscroll-behavior: contain;
+  transition: none;
 }
 
 /* --------------------------------------------------------------------------

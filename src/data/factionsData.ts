@@ -237,6 +237,8 @@ Xưa kia Long Chí Quốc đã đánh bại cuộc xâm lăng tàn bạo của �
     color: '#c43d3b',
     secondaryColor: '#d97706',
     bannerUrl: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80',
+    logoUrl: '/theluc/Vương quốc rồng.png',
+    emblemUrl: '/theluc/vuongquocrong.png',
     coordinates3D: [9, 0, 2],
     keyLandmarks: [
       'Hoàng Cung Long Chí Quốc (Yue)',

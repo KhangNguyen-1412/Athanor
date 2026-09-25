@@ -23,8 +23,6 @@ export const FactionDetailModal: React.FC<FactionDetailModalProps> = ({
   const [heroSearch, setHeroSearch] = useState('');
   const [heroRole, setHeroRole] = useState<HeroRole | 'all'>('all');
 
-  if (!faction) return null;
-
   const [overrideTick, setOverrideTick] = useState<number>(0);
 
   useEffect(() => {
@@ -33,12 +31,13 @@ export const FactionDetailModal: React.FC<FactionDetailModalProps> = ({
     return () => window.removeEventListener('athanor-hero-updated', handleUpdate);
   }, []);
 
-  const factionHeroes = useMemo(() =>
-    heroCustomStore
+  const factionHeroes = useMemo(() => {
+    if (!faction) return [];
+    void overrideTick;
+    return heroCustomStore
       .getActiveHeroes(HEROES_DATA)
-      .filter((h) => h.factionId === faction.id),
-    [faction, overrideTick]
-  );
+      .filter((h) => h.factionId === faction.id);
+  }, [faction, overrideTick]);
 
   const roles: HeroRole[] = useMemo(() => {
     const set = new Set<HeroRole>();
@@ -59,6 +58,8 @@ export const FactionDetailModal: React.FC<FactionDetailModalProps> = ({
     }),
     [factionHeroes, heroSearch, heroRole]
   );
+
+  if (!faction) return null;
 
   const paragraphs = faction.lore.split('\n\n');
 

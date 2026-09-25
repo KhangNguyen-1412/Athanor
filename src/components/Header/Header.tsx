@@ -34,17 +34,26 @@ export const Header: React.FC<HeaderProps> = ({ currentTab, onSelectTab }) => {
   return (
     <header className="minimal-header">
       <div className="minimal-header-container">
-        {/* Brand Logo */}
-        <div className="minimal-brand" onClick={() => onSelectTab('roster')}>
-          <div className="minimal-brand-mark">
-            <span className="brand-letter">A</span>
-            <span className="brand-dot" />
+        {/* Official Liên Quân Mobile Brand */}
+        <div 
+          className="minimal-brand" 
+          onClick={() => onSelectTab('roster')}
+          title="Liên Quân Mobile — Bách Khoa Toàn Thư Athanor"
+        >
+          <div className="lq-brand-logo-wrap">
+            <img 
+              src="/lienquan-gold-logo.png" 
+              alt="Liên Quân Mobile" 
+              className="lq-official-logo" 
+            />
           </div>
+          <div className="minimal-brand-divider" />
           <div className="minimal-brand-text">
             <span className="brand-title">ATHANOR</span>
-            <span className="brand-caption">129 TƯỚNG LIÊN QUÂN</span>
+            <span className="brand-caption">BÁCH KHOA 129 TƯỚNG</span>
           </div>
         </div>
+
 
         {/* Minimalist Navigation Tabs */}
         <nav className="minimal-nav">

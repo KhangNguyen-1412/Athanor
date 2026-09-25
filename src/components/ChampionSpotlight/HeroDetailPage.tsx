@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import type { Hero, Skill, HeroForm } from '../../types/athanor';
+import React, { useState, useEffect, useMemo } from 'react';
+import type { Hero, Skill, HeroForm, HeroSkin } from '../../types/athanor';
 import { FACTIONS_DATA } from '../../data/factionsData';
 import { HEROES_DATA } from '../../data/heroesData';
 import { heroCustomStore } from '../../utils/heroCustomStore';
 import { getHeroSpotlight } from '../../data/spotlightData';
-import { HeroImageEditorModal } from './HeroImageEditorModal';
+import { getHeroSkins, getSkinTierSlug } from '../../data/skinsData';
+import { HeroImageEditorModal, type EditorTab } from './HeroImageEditorModal';
+import { HeroRelationsOrbitDiagram } from './HeroRelationsOrbitDiagram';
 import { RadarChart } from './RadarChart';
 import {
   ArrowLeft,
-  ArrowRight,
   MapPin,
   Calendar,
   Ruler,
@@ -29,7 +30,8 @@ import {
   ChevronRight,
   Shield,
   FileText,
-  Users
+  Maximize2,
+  X
 } from 'lucide-react';
 import './HeroDetailPage.css';
 import './HeroModal.css';
@@ -49,18 +51,60 @@ export const HeroDetailPage: React.FC<HeroDetailPageProps> = ({
 }) => {
   const [currentHero, setCurrentHero] = useState<Hero>(() => heroCustomStore.applyOverride(hero));
   const [isEditorOpen, setIsEditorOpen] = useState<boolean>(false);
+  const [editorInitialTab, setEditorInitialTab] = useState<EditorTab>('info');
+  const [editorFocusField, setEditorFocusField] = useState<string | undefined>(undefined);
   const [overrideTick, setOverrideTick] = useState<number>(0);
+
+  const handleOpenEditor = (tab: EditorTab = 'info', focusField?: string) => {
+    setEditorInitialTab(tab);
+    setEditorFocusField(focusField);
+    setIsEditorOpen(true);
+  };
   const [activeTab, setActiveTab] = useState<DetailTab>('combat');
   const [activeSkillIndex, setActiveSkillIndex] = useState<number>(0);
   const [activeFormId, setActiveFormId] = useState<string | null>(null);
+  const [isScrolledPastCover, setIsScrolledPastCover] = useState<boolean>(false);
+
+  // Skins System
+  const heroSkins: HeroSkin[] = useMemo(() => getHeroSkins(currentHero), [currentHero]);
+  const [activeSkinId, setActiveSkinId] = useState<string>(() => heroSkins[0]?.id || 'default');
+  const [isSkinModalOpen, setIsSkinModalOpen] = useState<boolean>(false);
+
+  // Sync activeSkinId when hero changes
+  useEffect(() => {
+    const skins = getHeroSkins(currentHero);
+    if (skins.length > 0) {
+      setActiveSkinId(skins[0].id);
+    }
+  }, [currentHero.id]);
+
+  const activeSkin: HeroSkin = useMemo(() => {
+    return heroSkins.find((s) => s.id === activeSkinId) || heroSkins[0];
+  }, [heroSkins, activeSkinId]);
 
   // Scroll to top when hero changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    setCurrentHero(heroCustomStore.applyOverride(hero));
+    const updated = heroCustomStore.applyOverride(hero);
+    setCurrentHero(updated);
     setActiveSkillIndex(0);
     setActiveFormId(null);
+    setIsScrolledPastCover(false);
+    const skins = getHeroSkins(updated);
+    if (skins.length > 0) {
+      setActiveSkinId(skins[0].id);
+    }
   }, [hero, overrideTick]);
+
+  // Track scroll position to shrink hero identity into sticky bar
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolledPastCover(window.scrollY > 220);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleUpdate = () => {
@@ -82,7 +126,10 @@ export const HeroDetailPage: React.FC<HeroDetailPageProps> = ({
   };
 
   const faction = FACTIONS_DATA[currentHero.factionId];
-  const allActiveHeroes = heroCustomStore.getActiveHeroes(HEROES_DATA);
+  const allActiveHeroes = useMemo(() => {
+    void overrideTick;
+    return heroCustomStore.getActiveHeroes(HEROES_DATA);
+  }, [overrideTick]);
 
   // Compute previous and next hero for footer cycler
   const currentIndex = allActiveHeroes.findIndex((h) => h.id === currentHero.id);
@@ -108,26 +155,12 @@ export const HeroDetailPage: React.FC<HeroDetailPageProps> = ({
     : null;
 
   const displaySkills = activeForm ? activeForm.skills : currentHero.skills;
-  const displayAvatar = activeForm?.avatarUrl ?? currentHero.avatarUrl;
-  const displayBanner = activeForm?.bannerUrl ?? currentHero.bannerUrl;
+  const displayAvatar = activeSkin?.avatarUrl || activeForm?.avatarUrl || currentHero.avatarUrl;
+  const displayBanner = activeSkin?.bannerUrl || activeForm?.bannerUrl || currentHero.bannerUrl;
   const displayRole = activeForm?.role ?? currentHero.role;
+  const displayQuote = activeSkin?.quote || currentHero.quote;
 
   const activeSkill: Skill = displaySkills[activeSkillIndex] || displaySkills[0];
-
-  // Relationships
-  const heroRelations = heroCustomStore.getHeroRelations(currentHero.id).map((rel) => {
-    const isSource = rel.sourceHeroId === currentHero.id;
-    const relatedHeroId = isSource ? rel.targetHeroId : rel.sourceHeroId;
-    const relatedHero = allActiveHeroes.find((h) => h.id === relatedHeroId);
-    return {
-      ...rel,
-      relatedHero
-    };
-  }).filter((r) => r.relatedHero !== undefined);
-
-  const directRelatedHeroes = (currentHero.relatedHeroIds || [])
-    .map((rId) => allActiveHeroes.find((h) => h.id === rId))
-    .filter((h): h is Hero => h !== undefined);
 
   const slotLabels: Record<string, { roman: string; name: string }> = {
     passive: { roman: 'P', name: 'Nội tại' },
@@ -142,18 +175,6 @@ export const HeroDetailPage: React.FC<HeroDetailPageProps> = ({
       case 'Phép': return 'pill-damage-magic';
       case 'Vật lý': return 'pill-damage-physical';
       default: return '';
-    }
-  };
-
-  const getRelationBadgeClass = (type: string) => {
-    switch (type.toLowerCase()) {
-      case 'enemy': return 'badge-bond-enemy';
-      case 'ally':
-      case 'kin': return 'badge-bond-ally';
-      case 'love': return 'badge-bond-love';
-      case 'mentor': return 'badge-bond-mentor';
-      case 'rival': return 'badge-bond-rival';
-      default: return 'badge-bond-ally';
     }
   };
 
@@ -200,7 +221,7 @@ export const HeroDetailPage: React.FC<HeroDetailPageProps> = ({
             <button
               type="button"
               className="detail-action-btn"
-              onClick={() => setIsEditorOpen(true)}
+              onClick={() => handleOpenEditor('info')}
               title="Chỉnh sửa thông tin, chỉ số, hình ảnh, video và mối quan hệ"
             >
               <Edit3 size={14} />
@@ -219,104 +240,240 @@ export const HeroDetailPage: React.FC<HeroDetailPageProps> = ({
           </div>
         </nav>
 
-        {/* Hero Heroic Cover Banner */}
+        {/* Hero Heroic Cover Banner with Skin Wardrobe */}
         <header className="hero-heroic-cover">
-          <div className="cover-banner-image-wrap">
-            <img src={displayBanner} alt={currentHero.name} className="cover-banner-img" />
-            <div className="cover-gradient-scrim" />
-          </div>
-
-          <div className="cover-content-layout">
-            <div className="cover-avatar-frame">
-              <img src={displayAvatar} alt={currentHero.name} className="cover-avatar-img" />
+          <div className="cover-main-monograph">
+            <div className="cover-banner-image-wrap">
+              <img
+                key={activeSkin?.id || 'banner'}
+                src={displayBanner}
+                alt={activeSkin?.name || currentHero.name}
+                className="cover-banner-img animate-fade-in"
+                onError={(e) => {
+                  if (e.currentTarget.src !== currentHero.bannerUrl) {
+                    e.currentTarget.src = currentHero.bannerUrl;
+                  }
+                }}
+              />
+              <div className="cover-gradient-scrim" />
             </div>
 
-            <div className="cover-info-col">
-              <div className="cover-tags-row">
-                <span
-                  className="cover-pill cover-pill-faction"
-                  style={{
-                    color: faction?.color,
-                    borderColor: `${faction?.color}50`,
-                    backgroundColor: `${faction?.color}18`
+            <div className="cover-content-layout">
+              <div className="cover-avatar-frame">
+                <img
+                  key={activeSkin?.id || 'avatar'}
+                  src={displayAvatar}
+                  alt={currentHero.name}
+                  className="cover-avatar-img animate-fade-in"
+                  onError={(e) => {
+                    if (e.currentTarget.src !== currentHero.avatarUrl) {
+                      e.currentTarget.src = currentHero.avatarUrl;
+                    }
                   }}
-                >
-                  {faction?.name}
-                </span>
-                <span className="cover-pill cover-pill-role">
-                  {displayRole}{!activeFormId && currentHero.secondaryRole ? ` • ${currentHero.secondaryRole}` : ''}
-                </span>
-                {currentHero.birthplace && (
-                  <span className="cover-pill cover-pill-meta" title="Nơi sinh">
-                    <MapPin size={11} />
-                    <span>{currentHero.birthplace}</span>
-                  </span>
-                )}
-                {currentHero.birthday && (
-                  <span className="cover-pill cover-pill-meta" title="Sinh nhật">
-                    <Calendar size={11} />
-                    <span>{currentHero.birthday}</span>
-                  </span>
-                )}
-                {currentHero.height && (
-                  <span className="cover-pill cover-pill-meta" title="Chiều cao">
-                    <Ruler size={11} />
-                    <span>{currentHero.height}</span>
-                  </span>
-                )}
+                />
               </div>
 
-              <div className="cover-hero-title-row">
-                <h1 className="cover-hero-name">
-                  {currentHero.name}
-                  <span className="cover-hero-epithet">「{currentHero.title}」</span>
-                </h1>
+              <div className="cover-info-col">
+                <div className="cover-tags-row">
+                  <span
+                    className="cover-pill cover-pill-faction"
+                    style={{
+                      color: faction?.color,
+                      borderColor: `${faction?.color}50`,
+                      backgroundColor: `${faction?.color}18`
+                    }}
+                  >
+                    {faction?.name}
+                  </span>
+                  <span className="cover-pill cover-pill-role">
+                    {displayRole}{!activeFormId && currentHero.secondaryRole ? ` • ${currentHero.secondaryRole}` : ''}
+                  </span>
+                  {currentHero.birthplace && (
+                    <span className="cover-pill cover-pill-meta" title="Nơi sinh">
+                      <MapPin size={11} />
+                      <span>{currentHero.birthplace}</span>
+                    </span>
+                  )}
+                  {currentHero.birthday && (
+                    <span className="cover-pill cover-pill-meta" title="Sinh nhật">
+                      <Calendar size={11} />
+                      <span>{currentHero.birthday}</span>
+                    </span>
+                  )}
+                  {currentHero.height && (
+                    <span className="cover-pill cover-pill-meta" title="Chiều cao">
+                      <Ruler size={11} />
+                      <span>{currentHero.height}</span>
+                    </span>
+                  )}
+                  {activeSkin && activeSkin.tier && (
+                    <span className={`cover-pill cover-pill-skin-tier tier-${getSkinTierSlug(activeSkin.tier)}`}>
+                      <Sparkles size={11} />
+                      <span>{activeSkin.tier}</span>
+                    </span>
+                  )}
+                </div>
+
+                <div className="cover-hero-title-row">
+                  <h1 className="cover-hero-name">
+                    {currentHero.name}
+                    <span className="cover-hero-epithet">「{currentHero.title}」</span>
+                  </h1>
+                  {activeSkin && activeSkin.id !== heroSkins[0]?.id && (
+                    <div className="cover-active-skin-title">
+                      <span className="skin-title-prefix">Trang Phục:</span>
+                      <span className="skin-title-name">{activeSkin.name}</span>
+                    </div>
+                  )}
+                </div>
+
+                <p className="cover-hero-quote">
+                  “{displayQuote}”
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Skin Wardrobe Carousel Dock */}
+          <div className="cover-skin-dock">
+            <div className="skin-dock-header">
+              <div className="skin-dock-title-group">
+                <span className="skin-dock-icon">✦</span>
+                <span className="skin-dock-heading">BỘ SƯU TẬP TRANG PHỤC ({heroSkins.length})</span>
+                <span className="skin-dock-current-name">
+                  {activeSkin?.name}
+                  {activeSkin?.tier && activeSkin.tier !== 'Mặc Định' && ` [${activeSkin.tier}]`}
+                </span>
               </div>
 
-              <p className="cover-hero-quote">
-                “{currentHero.quote}”
-              </p>
+              <button
+                type="button"
+                className="skin-dock-inspect-btn"
+                onClick={() => setIsSkinModalOpen(true)}
+                title="Xem toàn cảnh hình nền splash art kích thước lớn"
+              >
+                <Maximize2 size={13} />
+                <span>Xem Toàn Cảnh</span>
+              </button>
+            </div>
+
+            <div className="skin-dock-scroller">
+              {heroSkins.map((skin) => {
+                const isSelected = skin.id === activeSkin?.id;
+                const thumbImg = skin.avatarUrl || skin.bannerUrl;
+                const tierSlug = getSkinTierSlug(skin.tier);
+
+                return (
+                  <button
+                    key={skin.id}
+                    type="button"
+                    className={`skin-dock-card ${isSelected ? 'active' : ''}`}
+                    onClick={() => setActiveSkinId(skin.id)}
+                    title={`${skin.name} (${skin.tier || 'Trang phục'})`}
+                  >
+                    <div className="skin-dock-thumb-wrap">
+                      <img
+                        src={thumbImg}
+                        alt={skin.name}
+                        className="skin-dock-img"
+                        loading="lazy"
+                        decoding="async"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.onerror = null;
+                          target.src = currentHero.avatarUrl;
+                        }}
+                      />
+                      {skin.tier && skin.tier !== 'Mặc Định' && (
+                        <span className={`skin-dock-tier-chip tier-${tierSlug}`}>
+                          {skin.tier.replace('Bậc ', '')}
+                        </span>
+                      )}
+                      {isSelected && <div className="skin-dock-active-glow" />}
+                    </div>
+                    <span className="skin-dock-label">{skin.name}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </header>
 
-        {/* Sticky Segmented Tabs Bar */}
-        <div className="detail-tabs-sticky-wrap">
-          <nav className="detail-tabs-bar">
-            <button
-              type="button"
-              className={`detail-tab-btn ${activeTab === 'combat' ? 'active' : ''}`}
-              onClick={() => setActiveTab('combat')}
+        {/* Sticky Segmented Tabs Bar with Collapsed Champion Identity */}
+        <div className={`detail-tabs-sticky-wrap ${isScrolledPastCover ? 'sticky-compact-active' : ''}`}>
+          <div className="sticky-inner-layout">
+            <div
+              className={`sticky-compact-hero ${isScrolledPastCover ? 'visible' : ''}`}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              title="Nhấp để cuộn lên đầu trang"
             >
-              <Zap size={14} />
-              <span>Tác Chiến & Kỹ Năng</span>
-            </button>
-            <button
-              type="button"
-              className={`detail-tab-btn active-secret ${activeTab === 'secret' ? 'active' : ''}`}
-              onClick={() => setActiveTab('secret')}
-            >
-              <Lock size={14} />
-              <span>Hồ Sơ Mật</span>
-            </button>
-            <button
-              type="button"
-              className={`detail-tab-btn active-lore ${activeTab === 'lore' ? 'active' : ''}`}
-              onClick={() => setActiveTab('lore')}
-            >
-              <BookOpen size={14} />
-              <span>Sử Thi & Quan Hệ</span>
-            </button>
-            <button
-              type="button"
-              className={`detail-tab-btn active-spotlight ${activeTab === 'spotlight' ? 'active' : ''}`}
-              onClick={() => setActiveTab('spotlight')}
-            >
-              <PlayCircle size={14} />
-              <span>Tâm Điểm Tướng</span>
-              <span className="tab-badge-hd">HD</span>
-            </button>
-          </nav>
+              <div
+                className="sticky-compact-avatar-wrap"
+                style={{ borderColor: faction?.color || '#0284c7' }}
+              >
+                <img
+                  src={displayAvatar}
+                  alt={currentHero.name}
+                  className="sticky-compact-avatar"
+                  onError={(e) => {
+                    e.currentTarget.src = currentHero.avatarUrl;
+                  }}
+                />
+              </div>
+              <div className="sticky-compact-text">
+                <div className="sticky-compact-name-row">
+                  <span className="sticky-compact-name">{currentHero.name}</span>
+                  {activeSkin && activeSkin.id !== heroSkins[0]?.id ? (
+                    <span className="sticky-compact-epithet">「{activeSkin.name}」</span>
+                  ) : currentHero.title ? (
+                    <span className="sticky-compact-epithet">「{currentHero.title}」</span>
+                  ) : null}
+                </div>
+                {displayQuote && (
+                  <p className="sticky-compact-quote" title={displayQuote}>
+                    “{displayQuote}”
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <nav className="detail-tabs-bar">
+              <button
+                type="button"
+                className={`detail-tab-btn ${activeTab === 'combat' ? 'active' : ''}`}
+                onClick={() => setActiveTab('combat')}
+              >
+                <Zap size={14} />
+                <span>I. Tác Chiến & Kỹ Năng</span>
+              </button>
+              <button
+                type="button"
+                className={`detail-tab-btn active-secret ${activeTab === 'secret' ? 'active' : ''}`}
+                onClick={() => setActiveTab('secret')}
+              >
+                <Lock size={14} />
+                <span>II. Hồ Sơ Mật</span>
+              </button>
+              <button
+                type="button"
+                className={`detail-tab-btn active-lore ${activeTab === 'lore' ? 'active' : ''}`}
+                onClick={() => setActiveTab('lore')}
+              >
+                <BookOpen size={14} />
+                <span>III. Sử Thi & Quan Hệ</span>
+              </button>
+              <button
+                type="button"
+                className={`detail-tab-btn active-spotlight ${activeTab === 'spotlight' ? 'active' : ''}`}
+                onClick={() => setActiveTab('spotlight')}
+              >
+                <PlayCircle size={14} />
+                <span>IV. Tâm Điểm Tướng</span>
+                <span className="tab-badge-hd">HD</span>
+              </button>
+            </nav>
+
+          </div>
         </div>
 
         {/* Main Content Body */}
@@ -628,95 +785,11 @@ export const HeroDetailPage: React.FC<HeroDetailPageProps> = ({
                 </div>
               </div>
 
-              {/* Relationship Constellation */}
-              <div className="constellation-section">
-                <div className="constellation-header">
-                  <h4 className="constellation-title">
-                    <Users size={15} style={{ color: '#0284c7' }} />
-                    <span>MẠNG LƯỚI NHÂN DUYÊN SỬ THI</span>
-                  </h4>
-                  <span className="codex-badge-minimal">
-                    {heroRelations.length > 0 ? `${heroRelations.length} MỐI QUAN HỆ` : 'LIÊN KẾT THẾ LỰC'}
-                  </span>
-                </div>
-
-                {heroRelations.length > 0 ? (
-                  <div className="constellation-cards-grid">
-                    {heroRelations.map((rel) => {
-                      const related = rel.relatedHero;
-                      if (!related) return null;
-                      return (
-                        <div
-                          key={rel.id}
-                          className="relation-bond-card"
-                          onClick={() => onSelectHero(related)}
-                        >
-                          <div className="bond-flow-row">
-                            <div className="bond-hero-node">
-                              <img src={related.avatarUrl} alt={related.name} className="bond-avatar" />
-                              <div>
-                                <span className="bond-hero-name">{related.name}</span>
-                                <div className="bond-hero-title">「{related.title}」</div>
-                              </div>
-                            </div>
-
-                            <span className={`bond-type-badge ${getRelationBadgeClass(rel.relationType)}`}>
-                              {rel.label}
-                            </span>
-                          </div>
-
-                          <p className="bond-desc-text">{rel.description}</p>
-
-                          <div className="bond-action-row">
-                            <span>Khám phá hồ sơ</span>
-                            <ArrowRight size={12} />
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                ) : directRelatedHeroes.length > 0 ? (
-                  <div className="constellation-cards-grid">
-                    {directRelatedHeroes.map((related) => {
-                      const relFaction = FACTIONS_DATA[related.factionId];
-                      return (
-                        <div
-                          key={related.id}
-                          className="relation-bond-card"
-                          onClick={() => onSelectHero(related)}
-                        >
-                          <div className="bond-flow-row">
-                            <div className="bond-hero-node">
-                              <img src={related.avatarUrl} alt={related.name} className="bond-avatar" />
-                              <div>
-                                <span className="bond-hero-name">{related.name}</span>
-                                <div className="bond-hero-title">「{related.title}」</div>
-                              </div>
-                            </div>
-
-                            <span className="bond-type-badge badge-bond-ally" style={{ color: relFaction?.color }}>
-                              {relFaction?.name || related.role}
-                            </span>
-                          </div>
-
-                          <p className="bond-desc-text">
-                            Đồng hành trong đại lục Athanor thuộc thế lực {relFaction?.name || 'Liên Quân'}.
-                          </p>
-
-                          <div className="bond-action-row">
-                            <span>Khám phá hồ sơ</span>
-                            <ArrowRight size={12} />
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                ) : (
-                  <p style={{ fontSize: '0.85rem', color: '#64748b', fontStyle: 'italic', margin: 0 }}>
-                    Vị tướng này hành tung bí ẩn, chưa được ghi nhận mối ràng buộc định mệnh trực tiếp trong sử sách.
-                  </p>
-                )}
-              </div>
+              {/* Sơ đồ Các Mối Duyên Nợ & Quan Hệ Chiến Sự (Arena of Valor Astrolabe Constellation) */}
+              <HeroRelationsOrbitDiagram
+                hero={currentHero}
+                onSelectHero={onSelectHero}
+              />
             </div>
           )}
 
@@ -770,7 +843,7 @@ export const HeroDetailPage: React.FC<HeroDetailPageProps> = ({
                   <button
                     type="button"
                     className="spotlight-edit-btn"
-                    onClick={() => setIsEditorOpen(true)}
+                    onClick={() => handleOpenEditor('media', 'spotlightVideo')}
                     title="Đổi hoặc gắn link video YouTube tùy chỉnh cho tướng này"
                   >
                     <Edit3 size={13} />
@@ -932,11 +1005,106 @@ export const HeroDetailPage: React.FC<HeroDetailPageProps> = ({
       {isEditorOpen && (
         <HeroImageEditorModal
           hero={currentHero}
+          initialTab={editorInitialTab}
+          focusField={editorFocusField}
           onClose={() => setIsEditorOpen(false)}
           onUpdated={(updated) => {
             setCurrentHero(updated);
           }}
         />
+      )}
+
+      {/* Fullscreen Skin Splash Art Lightbox Modal */}
+      {isSkinModalOpen && activeSkin && (
+        <div
+          className="skin-lightbox-backdrop animate-fade-in"
+          onClick={() => setIsSkinModalOpen(false)}
+        >
+          <div
+            className="skin-lightbox-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="skin-lightbox-close-btn"
+              onClick={() => setIsSkinModalOpen(false)}
+              title="Đóng xem toàn cảnh (Esc)"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="skin-lightbox-media-wrap">
+              <img
+                src={activeSkin.bannerUrl}
+                alt={activeSkin.name}
+                className="skin-lightbox-splash-img"
+                onError={(e) => {
+                  e.currentTarget.src = currentHero.bannerUrl;
+                }}
+              />
+              <div className="skin-lightbox-vignette" />
+            </div>
+
+            {/* Lightbox Skin Info Panel */}
+            <div className="skin-lightbox-footer-panel">
+              <div className="skin-lightbox-info-left">
+                <div className="skin-lightbox-tier-row">
+                  <span className={`skin-lightbox-tier-badge tier-${getSkinTierSlug(activeSkin.tier)}`}>
+                    {activeSkin.tier || 'Trang Phục'}
+                  </span>
+                  <span className="skin-lightbox-hero-name">{currentHero.name}</span>
+                </div>
+                <h2 className="skin-lightbox-skin-name">{activeSkin.name}</h2>
+                {activeSkin.description && (
+                  <p className="skin-lightbox-desc">{activeSkin.description}</p>
+                )}
+                {activeSkin.quote && (
+                  <p className="skin-lightbox-quote">“{activeSkin.quote}”</p>
+                )}
+                {activeSkin.effects && activeSkin.effects.length > 0 && (
+                  <div className="skin-lightbox-effects-row">
+                    {activeSkin.effects.map((ef, idx) => (
+                      <span key={idx} className="skin-lightbox-effect-tag">
+                        ✦ {ef}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Skin Navigation Cycler */}
+              <div className="skin-lightbox-nav-buttons">
+                <button
+                  type="button"
+                  className="skin-nav-circle-btn"
+                  title="Trang phục trước"
+                  onClick={() => {
+                    const curIdx = heroSkins.findIndex((s) => s.id === activeSkin.id);
+                    const prevIdx = (curIdx - 1 + heroSkins.length) % heroSkins.length;
+                    setActiveSkinId(heroSkins[prevIdx].id);
+                  }}
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <span className="skin-lightbox-counter">
+                  {heroSkins.findIndex((s) => s.id === activeSkin.id) + 1} / {heroSkins.length}
+                </span>
+                <button
+                  type="button"
+                  className="skin-nav-circle-btn"
+                  title="Trang phục kế tiếp"
+                  onClick={() => {
+                    const curIdx = heroSkins.findIndex((s) => s.id === activeSkin.id);
+                    const nextIdx = (curIdx + 1) % heroSkins.length;
+                    setActiveSkinId(heroSkins[nextIdx].id);
+                  }}
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

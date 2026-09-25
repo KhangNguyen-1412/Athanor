@@ -1,106 +1,144 @@
 :root {
-  /* Complete Editorial Typography System - 100% Newsreader */
+  /* =========================================================================
+     EDITORIAL & EPIC TYPOGRAPHY SYSTEM: PLAYFAIR DISPLAY & NEWSREADER
+     - Playfair Display: Titles, Headlines, Champion Names, Mastheads, Banners
+     - Newsreader: Body Copy, Lore Stories, Biographies, UI Controls, Badges, Tabs
+     ========================================================================= */
+  --font-playfair: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-newsreader: 'Newsreader', Georgia, 'Times New Roman', serif;
-  --font-editorial-serif: var(--font-newsreader);
-  --font-editorial-display: var(--font-newsreader);
+
+  /* Universal Aliases (routes all previous component classes to Playfair & Newsreader) */
+  --font-cinzel: var(--font-playfair);
+  --font-montserrat: var(--font-newsreader);
+
+  /* Semantic Typography Roles */
+  --font-display: var(--font-playfair);      /* Headlines, Mastheads, Titles & Champion Names */
+  --font-serif: var(--font-playfair);        /* Epic Section Headers & Modal Titles */
+  --font-editorial-display: var(--font-playfair);
+  --font-editorial-serif: var(--font-playfair);
+
+  --font-body: var(--font-newsreader);       /* Lore Stories, Biographies, Paragraphs */
+  --font-ui: var(--font-newsreader);         /* Navigation, Controls, Tabs, Tags & Badges */
+  --font-mono: var(--font-newsreader);
   --font-editorial-body: var(--font-newsreader);
   --font-editorial-sans: var(--font-newsreader);
   --font-editorial-mono: var(--font-newsreader);
 
-  /* Universal alias mappings */
-  --font-display: var(--font-newsreader);
-  --font-ui: var(--font-newsreader);
-  --font-body: var(--font-newsreader);
-
-  /* Clean Light Palette */
-  --bg-canvas: #f8fafc;
-  --bg-surface: #ffffff;
+  /* =========================================================================
+     IVORY PAPER CANVAS & EDITORIAL SURFACES
+     ========================================================================= */
+  --bg-canvas: #fbf9f4;                /* Creamy warm Ivory paper */
+  --bg-surface: #ffffff;               /* Clean white paper card */
   --bg-surface-elevated: #ffffff;
-  --bg-subtle: #f1f5f9;
+  --bg-subtle: #f5f1e8;                /* Soft paper tone */
+  --bg-card: #ffffff;
+  --bg-card-hover: #fcfbfa;
+  --bg-parchment: #f7f4ee;
+  --bg-darkest: #f4f0e6;
+  --bg-primary: #fbf9f4;
+  --bg-secondary: #ffffff;
 
-  /* Minimalist Text Hierarchy */
-  --editorial-parchment: #0f172a; /* Slate 900 */
-  --editorial-ivory: #334155;     /* Slate 700 */
-  --editorial-muted: #64748b;     /* Slate 500 */
-  --editorial-dim: #94a3b8;       /* Slate 400 */
-
-  /* Minimalist Accents */
-  --cerulean: #0284c7;            /* Sky 600 */
-  --cerulean-light: #38bdf8;      /* Sky 400 */
-  --cerulean-ice: #0369a1;        /* Sky 700 */
-  --cerulean-deep: #0c4a6e;       /* Sky 900 */
+  /* =========================================================================
+     ACCENT PALETTE: CHỈ SỬ DỤNG TONE XANH CERULEAN & ĐỎ JASPER
+     ========================================================================= */
+  /* Tone Xanh Cerulean (Primary Editorial Accent) */
+  --cerulean: #0284c7;                 /* Sky / Cerulean 600 */
+  --cerulean-light: #38bdf8;           /* Cerulean 400 */
+  --cerulean-deep: #0369a1;            /* Cerulean 700 / Rich Ink Blue */
+  --cerulean-ice: #0284c7;
   --cerulean-bg: rgba(2, 132, 199, 0.08);
   --cerulean-hairline: rgba(2, 132, 199, 0.25);
 
-  --jasper: #e11d48;              /* Rose 600 */
-  --jasper-light: #f43f5e;        /* Rose 500 */
-  --jasper-ember: #be123c;        /* Rose 700 */
-  --jasper-deep: #881337;         /* Rose 900 */
-  --jasper-bg: rgba(225, 29, 72, 0.08);
-  --jasper-hairline: rgba(225, 29, 72, 0.25);
+  /* Tone Đỏ Jasper (Secondary Editorial Accent / Crimson) */
+  --jasper: #dc2626;                   /* Jasper / Crimson 600 */
+  --jasper-light: #ef4444;             /* Jasper 500 */
+  --jasper-ember: #b91c1c;             /* Jasper 700 */
+  --jasper-deep: #991b1b;              /* Jasper 900 */
+  --jasper-bg: rgba(220, 38, 38, 0.08);
+  --jasper-hairline: rgba(220, 38, 38, 0.25);
 
-  /* Clean Light Surfaces */
-  --editorial-ink: #f8fafc;
-  --editorial-charcoal: #f1f5f9;
+  /* Mapping for components using Gold/Cyan aliases -> Mapped strictly to Cerulean */
+  --lq-gold: var(--cerulean);
+  --lq-gold-light: var(--cerulean-deep);
+  --lq-gold-dark: #075985;
+  --lq-gold-glow: rgba(2, 132, 199, 0.25);
+  --lq-gold-bg: rgba(2, 132, 199, 0.08);
+  --lq-cyan: var(--cerulean);
+  --lq-cyan-glow: rgba(2, 132, 199, 0.25);
+  --lq-cyan-bg: rgba(2, 132, 199, 0.08);
+
+  --lq-violet: var(--cerulean);
+  --lq-violet-dark: var(--cerulean-deep);
+  --lq-purple-border: rgba(28, 25, 23, 0.08);
+  --lq-purple-border-strong: rgba(2, 132, 199, 0.25);
+
+  /* =========================================================================
+     EDITORIAL INK & TEXT HIERARCHY
+     ========================================================================= */
+  --text-main: #1c1917;                /* Deep Charcoal Ink (Stone 900) */
+  --text-primary: #1c1917;
+  --text-muted: #57534e;               /* Warm Stone 600 */
+  --text-dim: #78716c;                 /* Stone 500 */
+  --text-gold: var(--cerulean);
+
+  --editorial-parchment: #1c1917;      /* Primary Ink */
+  --editorial-ivory: #44403c;          /* Stone 700 */
+  --editorial-muted: #78716c;          /* Stone 500 */
+  --editorial-dim: #a8a29e;            /* Stone 400 */
+  --editorial-ink: #fbf9f4;
+  --editorial-charcoal: #f5f1e8;
   --editorial-surface: #ffffff;
   --editorial-surface-elevated: #ffffff;
   --editorial-card: #ffffff;
-  --editorial-card-hover: #ffffff;
-
-  /* Primary Accents */
+  --editorial-card-hover: #faf8f3;
   --editorial-primary: var(--cerulean);
   --editorial-secondary: var(--jasper);
   --editorial-gold: var(--cerulean);
   --editorial-gold-light: var(--cerulean-light);
-  --editorial-bronze: var(--jasper-deep);
+  --editorial-gold-bg: var(--cerulean-bg);
+  --editorial-gold-hairline: var(--cerulean-hairline);
+  --editorial-bronze: var(--jasper);
   --editorial-accent: var(--jasper);
+  --editorial-caption: #78716c;
 
-  /* Minimalist Hairline Borders */
-  --hairline: rgba(15, 23, 42, 0.08);
-  --hairline-strong: rgba(15, 23, 42, 0.16);
+  /* Editorial Hairlines & Paper Borders */
+  --hairline: rgba(28, 25, 23, 0.08);
+  --hairline-strong: rgba(28, 25, 23, 0.16);
+  --hairline-heavy: rgba(28, 25, 23, 0.24);
   --hairline-gold: var(--cerulean-hairline);
   --hairline-jasper: var(--jasper-hairline);
+  --border-subtle: var(--hairline);
+  --border-gold: var(--cerulean-hairline);
 
-  /* Faction Identity Tokens */
+  /* Faction Identity Tokens (Editorial Duotone: Cerulean & Jasper based) */
   --veda-color: #0284c7;
   --veda-bg: rgba(2, 132, 199, 0.08);
-  --afata-color: #059669;
-  --afata-bg: rgba(5, 150, 105, 0.08);
-  --carano-color: #7c3aed;
-  --carano-bg: rgba(124, 58, 237, 0.08);
-  --dao-suong-mu-color: #0891b2;
-  --dao-suong-mu-bg: rgba(8, 145, 178, 0.08);
-  --hai-linh-tran-color: #2563eb;
-  --hai-linh-tran-bg: rgba(37, 99, 235, 0.08);
-  --sa-mac-helios-color: #d97706;
-  --sa-mac-helios-bg: rgba(217, 119, 6, 0.08);
-  --hoi-am-hoang-color: #991b1b;
-  --hoi-am-hoang-bg: rgba(153, 27, 27, 0.08);
-
-  --lokheim-color: #e11d48;
-  --lokheim-bg: rgba(225, 29, 72, 0.08);
-  --norman-color: #d97706;
-  --norman-bg: rgba(217, 119, 6, 0.08);
-  --mist-color: #475569;
-  --mist-bg: rgba(71, 85, 105, 0.08);
+  --afata-color: #0d9488;
+  --afata-bg: rgba(13, 148, 136, 0.08);
+  --carano-color: #0284c7;
+  --carano-bg: rgba(2, 132, 199, 0.08);
+  --dao-suong-mu-color: #0284c7;
+  --dao-suong-mu-bg: rgba(2, 132, 199, 0.08);
+  --hai-linh-tran-color: #0369a1;
+  --hai-linh-tran-bg: rgba(3, 105, 161, 0.08);
+  --sa-mac-helios-color: #dc2626;
+  --sa-mac-helios-bg: rgba(220, 38, 38, 0.08);
+  --hoi-am-hoang-color: #dc2626;
+  --hoi-am-hoang-bg: rgba(220, 38, 38, 0.08);
+  --lokheim-color: #dc2626;
+  --lokheim-bg: rgba(220, 38, 38, 0.08);
+  --norman-color: #0284c7;
+  --norman-bg: rgba(2, 132, 199, 0.08);
+  --mist-color: #57534e;
+  --mist-bg: rgba(87, 83, 78, 0.08);
   --tan-lien-hiep-color: #dc2626;
   --tan-lien-hiep-bg: rgba(220, 38, 38, 0.08);
-  --long-chi-quoc-color: #b91c1c;
-  --long-chi-quoc-bg: rgba(185, 28, 28, 0.08);
+  --long-chi-quoc-color: #dc2626;
+  --long-chi-quoc-bg: rgba(220, 38, 38, 0.08);
 
-  /* General aliases for components */
-  --bg-darkest: var(--editorial-ink);
-  --bg-primary: var(--editorial-charcoal);
-  --bg-secondary: var(--editorial-surface);
-  --bg-card: var(--editorial-card);
-  --text-main: var(--editorial-parchment);
-  --text-muted: var(--editorial-muted);
-  --text-dim: var(--editorial-dim);
   --gold-primary: var(--cerulean);
   --gold-light: var(--cerulean-light);
   --gold-glow: var(--cerulean-light);
-  --border-subtle: var(--hairline);
-  --border-gold: var(--cerulean-hairline);
 }
 
 * {
@@ -115,18 +153,39 @@ body, button, input, select, textarea {
 }
 
 body {
-  background-color: var(--bg-canvas);
-  color: var(--editorial-parchment);
+  background-color: var(--bg-canvas, #fbf9f4);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.7) 0%, rgba(251, 249, 244, 0.95) 50%, #f7f3ea 100%);
+  background-attachment: fixed;
+  color: var(--text-main);
   overflow-x: hidden;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-  line-height: 1.6;
+  line-height: 1.65;
+  position: relative;
 }
 
-/* Custom Editorial Scrollbar System for all lists and containers */
+/* Hình nền in chìm cho background toàn hệ thống trên nền giấy ngà Ivory */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('/athanor-battle-watermark.jpg');
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.085; /* In chìm tinh tế, chuẩn phong cách bản thảo cổ trên giấy ngà */
+  filter: contrast(1.15) grayscale(25%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Custom Editorial Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(15, 23, 42, 0.2) transparent;
+  scrollbar-color: rgba(28, 25, 23, 0.2) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -137,86 +196,74 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.15);
+  background: rgba(28, 25, 23, 0.18);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(15, 23, 42, 0.3);
+  background: var(--cerulean);
 }
 
 .custom-scrollbar,
 .editorial-scrollbar {
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(15, 23, 42, 0.2) transparent;
+  scrollbar-color: rgba(28, 25, 23, 0.2) transparent;
 }
 
-.custom-scrollbar::-webkit-scrollbar,
-.editorial-scrollbar::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track,
-.editorial-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb,
-.editorial-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.15);
-  border-radius: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover,
-.editorial-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(15, 23, 42, 0.3);
-}
-
-/* Typography Headings */
-h1, h2, h3, h4, .serif-heading {
-  font-family: var(--font-editorial-serif);
-  font-weight: 600;
+/* Typography Headings - Playfair Display Editorial Serifs */
+h1, h2, h3, h4, h5, h6, .serif-heading {
+  font-family: var(--font-playfair);
+  font-weight: 700;
   letter-spacing: -0.01em;
-  color: var(--editorial-parchment);
+  color: var(--text-main);
 }
 
 .editorial-headline {
-  font-family: var(--font-editorial-serif);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 600;
-  line-height: 1.1;
+  font-family: var(--font-playfair);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.15;
   letter-spacing: -0.02em;
+  color: var(--text-main);
 }
 
 .editorial-italic {
-  font-family: var(--font-editorial-serif);
+  font-family: var(--font-newsreader);
   font-style: italic;
+  color: var(--text-muted);
 }
 
 .editorial-caption, .editorial-mono {
-  font-family: var(--font-editorial-mono);
-  font-size: 0.72rem;
+  font-family: var(--font-newsreader);
+  font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--editorial-muted);
+  color: var(--text-muted);
 }
 
 .editorial-lead {
   font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--editorial-ivory);
+  line-height: 1.65;
+  color: var(--text-muted);
 }
 
-/* Minimalist Accent Gradients */
+/* Minimalist Accent Gradients - Cerulean & Jasper */
 .gold-gradient-text,
 .duotone-gradient-text,
 .cerulean-gradient-text {
   color: var(--cerulean);
+  background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
 }
 
 .jasper-gradient-text {
   color: var(--jasper);
+  background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
 }
 
 /* Utility Classes */
@@ -247,7 +294,7 @@ h1, h2, h3, h4, .serif-heading {
   border: none;
 }
 
-/* Minimalist Hairline Borders & Frames */
+/* Editorial Frames & Borders */
 .hairline-top {
   border-top: 1px solid var(--hairline);
 }
@@ -265,59 +312,63 @@ h1, h2, h3, h4, .serif-heading {
   border: 1px solid var(--hairline);
   background: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 4px 16px rgba(28, 25, 23, 0.05);
 }
 
 /* Glass panel */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--hairline);
   border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(28, 25, 23, 0.05);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .glass-panel-gold {
-  background: var(--editorial-card);
-  backdrop-filter: blur(16px);
+  background: #ffffff;
   border: 1px solid var(--cerulean-hairline);
+  box-shadow: 0 8px 30px rgba(2, 132, 199, 0.08);
 }
 
-/* Buttons - Minimalist Style */
+/* Official Editorial Buttons */
 .btn-primary {
-  font-family: var(--font-ui);
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-family: var(--font-newsreader);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 8px 18px;
-  background: var(--editorial-parchment);
+  background: var(--cerulean);
   color: #ffffff;
-  border: 1px solid var(--editorial-parchment);
+  border: 1px solid var(--cerulean-deep);
   border-radius: 6px;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
   transition: all 0.2s ease;
 }
 
 .btn-primary:hover {
-  background: var(--cerulean);
-  border-color: var(--cerulean);
-  color: #ffffff;
+  background: var(--cerulean-deep);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
   transform: translateY(-1px);
+  color: #ffffff;
 }
 
 .btn-secondary {
-  font-family: var(--font-ui);
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-family: var(--font-newsreader);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
   background: #ffffff;
-  color: var(--editorial-ivory);
+  color: var(--text-main);
   border: 1px solid var(--hairline-strong);
   border-radius: 6px;
   cursor: pointer;
@@ -325,7 +376,7 @@ h1, h2, h3, h4, .serif-heading {
 }
 
 .btn-secondary:hover {
-  background: var(--bg-subtle);
+  background: var(--cerulean-bg);
   border-color: var(--cerulean);
   color: var(--cerulean);
 }
@@ -336,24 +387,25 @@ h1, h2, h3, h4, .serif-heading {
   color: var(--cerulean);
 }
 
-/* Badges - Minimalist Tags */
+/* Badges - Editorial Style */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 2px 8px;
-  font-family: var(--font-ui);
-  font-size: 0.68rem;
-  font-weight: 500;
+  padding: 3px 9px;
+  font-family: var(--font-newsreader);
+  font-size: 0.76rem;
+  font-weight: 600;
   border-radius: 4px;
   border: 1px solid var(--hairline);
-  background: rgba(15, 23, 42, 0.04);
+  background: rgba(28, 25, 23, 0.04);
+  color: var(--text-main);
 }
 
 .badge-role {
   background: var(--cerulean-bg);
   border: 1px solid var(--cerulean-hairline);
-  color: var(--cerulean-ice);
+  color: var(--cerulean-deep);
 }
 
 .badge-veda { background: var(--veda-bg); border-color: var(--veda-color); color: var(--veda-color); }
@@ -369,16 +421,16 @@ h1, h2, h3, h4, .serif-heading {
 .badge-sa_mac_helios { background: var(--sa-mac-helios-bg); border-color: var(--sa-mac-helios-color); color: var(--sa-mac-helios-color); }
 .badge-hoi_am_hoang { background: var(--hoi-am-hoang-bg); border-color: var(--hoi-am-hoang-color); color: var(--hoi-am-hoang-color); }
 
-/* Editorial Pull Quote */
+/* Editorial Pull Quote / Lore Excerpt */
 .editorial-quote {
   position: relative;
-  font-family: var(--font-editorial-serif);
+  font-family: var(--font-newsreader);
   font-style: italic;
   font-size: 1.15rem;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--editorial-ivory);
   padding-left: 20px;
-  border-left: 2px solid var(--cerulean);
+  border-left: 3px solid var(--cerulean);
 }
 
 /* Modal Lock and Scroll Containment */
@@ -391,8 +443,8 @@ body.modal-open {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(10px);
+  background: rgba(28, 25, 23, 0.45);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -403,7 +455,6 @@ body.modal-open {
   overflow: hidden;
 }
 
-/* Ensure all modal containers strictly contain their scrolling without chaining to background */
 .minimal-modal-container,
 .minimal-faction-container,
 .minimal-editor-container,
@@ -411,6 +462,10 @@ body.modal-open {
 .editorial-faction-container,
 .editorial-image-editor-container,
 .editorial-category-modal-container {
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--hairline-strong, rgba(28, 25, 23, 0.16));
+  box-shadow: 0 20px 60px rgba(28, 25, 23, 0.18), 0 4px 16px rgba(28, 25, 23, 0.08);
+  color: var(--text-main, #1c1917);
   overscroll-behavior: contain;
 }
 

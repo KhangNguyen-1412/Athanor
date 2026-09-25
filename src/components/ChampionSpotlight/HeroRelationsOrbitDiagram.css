@@ -1,0 +1,923 @@
+/* ==========================================================
+   HERO RELATIONS ORBIT DIAGRAM (Arena of Valor Astrolabe Constellation)
+   Sơ đồ các mối duyên nợ & quan hệ chiến sự hiển thị trong Hồ sơ tướng
+   ========================================================== */
+
+.hero-relations-orbit-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.hero-relations-orbit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--hairline-strong, rgba(28, 25, 23, 0.12));
+}
+
+.relations-header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.relations-header-text {
+  font-family: var(--font-playfair, 'Cinzel', serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--editorial-parchment, #1c1917);
+  letter-spacing: 0.04em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.relations-count-badge {
+  font-family: var(--font-newsreader, 'Inter', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  background: rgba(2, 132, 199, 0.1);
+  color: var(--cerulean, #0284c7);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  letter-spacing: 0.05em;
+}
+
+/* View Mode Switcher (Orbit vs Cards) */
+.orbit-view-mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(28, 25, 23, 0.04);
+  padding: 3px;
+  border-radius: 6px;
+  border: 1px solid var(--hairline, rgba(28, 25, 23, 0.08));
+}
+
+.orbit-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--editorial-muted, #78716c);
+  font-family: var(--font-newsreader, 'Inter', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.orbit-view-btn:hover {
+  color: var(--editorial-parchment, #1c1917);
+}
+
+.orbit-view-btn.active {
+  border-color: var(--cerulean, #0284c7);
+  background: #ffffff;
+  color: var(--cerulean, #0284c7);
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Empty State */
+.orbit-empty-box {
+  padding: 48px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px dashed var(--hairline-strong, rgba(28, 25, 23, 0.2));
+  border-radius: 8px;
+}
+
+.orbit-empty-message {
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 0.95rem;
+  color: var(--editorial-muted, #78716c);
+  font-style: italic;
+  max-width: 520px;
+  margin: 0;
+}
+
+/* ========================================================== */
+/* RADIAL CONSTELLATION ORBIT STAGE (Arena of Valor In-game)  */
+/* ========================================================== */
+.orbit-stage-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(10, 15, 30, 0.22);
+  background: #0f1424;
+}
+
+.orbit-stage-container {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  min-height: 520px;
+  background: radial-gradient(ellipse at center, #1b254a 0%, #11172f 55%, #0a0d1d 100%);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Background SVG Canvas */
+.orbit-svg-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Concentric Astrolabe Rings */
+.astrolabe-ring {
+  fill: none;
+  stroke: rgba(148, 163, 184, 0.12);
+  stroke-width: 1;
+  stroke-dasharray: 4 6;
+}
+
+.ring-satellite-orbit {
+  stroke: rgba(56, 189, 248, 0.22);
+  stroke-width: 1.2;
+  stroke-dasharray: 2 4;
+}
+
+.astrolabe-axis {
+  stroke: rgba(148, 163, 184, 0.07);
+  stroke-width: 1;
+  stroke-dasharray: 3 6;
+}
+
+/* Center Node (Selected Hero) */
+.orbit-center-node {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.center-avatar-ring {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid #d4af37;
+  box-shadow: 
+    0 0 25px rgba(212, 175, 55, 0.5), 
+    0 0 0 5px rgba(212, 175, 55, 0.18),
+    inset 0 0 14px rgba(212, 175, 55, 0.35);
+  overflow: hidden;
+  background: #111425;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.center-avatar-ring:hover {
+  transform: scale(1.04);
+  box-shadow: 
+    0 0 35px rgba(212, 175, 55, 0.7), 
+    0 0 0 7px rgba(212, 175, 55, 0.25);
+}
+
+.center-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.center-hero-badge {
+  position: absolute;
+  bottom: -14px;
+  background: rgba(10, 14, 28, 0.94);
+  border: 1.5px solid rgba(212, 175, 55, 0.6);
+  border-radius: 14px;
+  padding: 2px 14px;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+.center-hero-name {
+  font-family: var(--font-playfair, 'Cinzel', serif);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #fef08a;
+  letter-spacing: 0.04em;
+}
+
+/* Satellite Nodes */
+.orbit-satellite-unit {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 8;
+  pointer-events: auto;
+}
+
+.satellite-avatar-frame {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background: #111425;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.satellite-avatar-frame:hover {
+  transform: scale(1.12);
+  z-index: 15;
+}
+
+.satellite-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Enemy Aura (Jasper Red) */
+.satellite-avatar-frame.frame-enemy {
+  border: 3px solid #ef4444;
+  box-shadow: 
+    0 0 22px rgba(239, 68, 68, 0.85), 
+    0 0 45px rgba(239, 68, 68, 0.4),
+    inset 0 0 10px rgba(239, 68, 68, 0.55);
+}
+
+.satellite-avatar-frame.frame-enemy:hover {
+  box-shadow: 
+    0 0 32px rgba(239, 68, 68, 1), 
+    0 0 60px rgba(239, 68, 68, 0.6),
+    inset 0 0 14px rgba(239, 68, 68, 0.7);
+}
+
+/* Ally Aura (Cerulean Ice Blue) */
+.satellite-avatar-frame.frame-ally {
+  border: 3px solid #38bdf8;
+  box-shadow: 
+    0 0 18px rgba(56, 189, 248, 0.75), 
+    0 0 35px rgba(56, 189, 248, 0.3),
+    inset 0 0 8px rgba(56, 189, 248, 0.4);
+}
+
+.satellite-avatar-frame.frame-ally:hover {
+  box-shadow: 
+    0 0 28px rgba(56, 189, 248, 0.95), 
+    0 0 50px rgba(56, 189, 248, 0.5),
+    inset 0 0 12px rgba(56, 189, 248, 0.55);
+}
+
+.satellite-avatar-frame.frame-neutral {
+  border: 3px solid #cbd5e1;
+  box-shadow: 0 0 14px rgba(203, 213, 225, 0.5);
+}
+
+/* Hover name label */
+.satellite-hover-name {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10, 14, 28, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f8fafc;
+  font-family: var(--font-newsreader, 'Inter', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 1px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.satellite-avatar-frame:hover .satellite-hover-name {
+  opacity: 1;
+  transform: translateX(-50%) translateY(2px);
+}
+
+/* Floating Relationship Badge */
+.orbit-relation-pill {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-family: var(--font-newsreader, 'Inter', sans-serif);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+  z-index: 12;
+}
+
+.orbit-relation-pill.align-right {
+  left: calc(100% + 8px);
+  top: 35%;
+  transform: translateY(-50%);
+}
+
+.orbit-relation-pill.align-left {
+  right: calc(100% + 8px);
+  top: 35%;
+  transform: translateY(-50%);
+}
+
+/* Enemy Badge */
+.orbit-relation-pill.pill-enemy {
+  color: #fca5a5;
+  background: linear-gradient(90deg, rgba(220, 38, 38, 0.45) 0%, rgba(220, 38, 38, 0.1) 100%);
+  border-top: 1px solid rgba(239, 68, 68, 0.5);
+  border-bottom: 1px solid rgba(239, 68, 68, 0.5);
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+}
+
+.orbit-relation-pill.pill-enemy .orbit-pill-trail {
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  width: 36px;
+  background: linear-gradient(90deg, #ef4444 0%, transparent 100%);
+  box-shadow: 0 0 8px #ef4444;
+}
+
+.orbit-relation-pill.pill-enemy.align-right .orbit-pill-trail {
+  left: 100%;
+}
+
+.orbit-relation-pill.pill-enemy.align-left .orbit-pill-trail {
+  right: 100%;
+  transform: rotate(180deg);
+}
+
+/* Ally Badge */
+.orbit-relation-pill.pill-ally {
+  color: #7dd3fc;
+  background: linear-gradient(90deg, rgba(2, 132, 199, 0.4) 0%, rgba(2, 132, 199, 0.08) 100%);
+  border-top: 1px solid rgba(56, 189, 248, 0.45);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.45);
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+}
+
+.orbit-relation-pill.pill-ally .orbit-pill-trail {
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  width: 36px;
+  background: linear-gradient(90deg, #38bdf8 0%, transparent 100%);
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.orbit-relation-pill.pill-ally.align-right .orbit-pill-trail {
+  left: 100%;
+}
+
+.orbit-relation-pill.pill-ally.align-left .orbit-pill-trail {
+  right: 100%;
+  transform: rotate(180deg);
+}
+
+/* Lore Story Book Button (📖) */
+.orbit-book-btn {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1.5px solid rgba(148, 163, 184, 0.4);
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 14;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.orbit-satellite-unit.side-right .orbit-book-btn {
+  bottom: -4px;
+  right: -4px;
+}
+
+.orbit-satellite-unit.side-left .orbit-book-btn {
+  bottom: -4px;
+  left: -4px;
+}
+
+.orbit-book-btn:hover {
+  transform: scale(1.22);
+  background: #1e293b;
+  border-color: #38bdf8;
+  color: #38bdf8;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.8);
+}
+
+.orbit-book-btn:active {
+  transform: scale(1.08);
+}
+
+/* Instructions Bar */
+.orbit-instructions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 10px 20px;
+  background: rgba(10, 14, 26, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-newsreader, 'Inter', monospace);
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.orbit-tip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.tip-dot-red {
+  background: #ef4444;
+  box-shadow: 0 0 6px #ef4444;
+}
+
+.tip-dot-blue {
+  background: #38bdf8;
+  box-shadow: 0 0 6px #38bdf8;
+}
+
+/* ========================================================== */
+/* DOSSIER CARDS (VIEW MODE 2)                                */
+/* ========================================================== */
+.orbit-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  max-height: 560px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.orbit-dossier-card {
+  border: 1px solid var(--hairline-strong, rgba(28, 25, 23, 0.14));
+  background: #ffffff;
+  padding: 18px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.orbit-dossier-card:hover {
+  background: #faf7f0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.orbit-card-top-tag {
+  display: flex;
+}
+
+.orbit-badge-indicator {
+  font-family: var(--font-newsreader, 'Inter', sans-serif);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid;
+  padding-bottom: 2px;
+}
+
+/* Bridge row */
+.orbit-bridge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.orbit-bridge-hero-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.orbit-bridge-avatar {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--hairline-strong, rgba(28, 25, 23, 0.15));
+}
+
+.orbit-bridge-hero-name {
+  font-family: var(--font-playfair, 'Cinzel', serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--editorial-parchment, #1c1917);
+}
+
+.orbit-bridge-hero-unit.clickable {
+  cursor: pointer;
+}
+
+.orbit-bridge-hero-unit.clickable .orbit-bridge-avatar {
+  border-color: var(--cerulean, #0284c7);
+  transition: transform 0.2s ease;
+}
+
+.orbit-bridge-hero-unit.clickable:hover .orbit-bridge-avatar {
+  transform: scale(1.1);
+}
+
+.orbit-bridge-hero-name.target-name {
+  color: var(--cerulean, #0284c7);
+}
+
+.orbit-bridge-hairline {
+  position: relative;
+  flex: 1;
+  height: 1.5px;
+  margin: 0 16px;
+  opacity: 0.65;
+}
+
+.orbit-bridge-pulse-dot {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.orbit-narrative-quote {
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 0.92rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--editorial-ivory, #44403c);
+  border-top: 1px solid var(--hairline, rgba(28, 25, 23, 0.08));
+  padding-top: 12px;
+  margin: 0;
+}
+
+.orbit-card-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.orbit-view-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  font-family: var(--font-newsreader, 'Inter', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--cerulean, #0284c7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.orbit-view-link:hover {
+  color: #0369a1;
+  transform: translateX(3px);
+}
+
+/* ========================================================== */
+/* LORE STORY POPOVER MODAL (When 📖 Book Button is Clicked)  */
+/* ========================================================== */
+.orbit-lore-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 18, 0.78);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: orbitLoreFadeIn 0.2s ease-out;
+}
+
+@keyframes orbitLoreFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.orbit-lore-modal-box {
+  background: #10162a;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 
+    0 28px 80px rgba(0, 0, 0, 0.9),
+    0 0 50px rgba(56, 189, 248, 0.28);
+  max-width: 840px;
+  width: min(840px, 94vw);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: orbitLoreSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes orbitLoreSlideUp {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.orbit-lore-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.orbit-lore-modal-folio {
+  font-family: var(--font-newsreader, 'Inter', monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+.orbit-lore-modal-title {
+  font-family: var(--font-playfair, 'Cinzel', serif);
+  font-size: 1.55rem;
+  color: #f8fafc;
+  margin-top: 4px;
+  font-weight: 700;
+}
+
+.orbit-lore-vs-span {
+  font-family: var(--font-newsreader, 'Inter', monospace);
+  font-size: 0.88rem;
+  color: #ef4444;
+  margin: 0 8px;
+}
+
+.orbit-lore-close-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.orbit-lore-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+/* Matchup Banner */
+.orbit-matchup-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  background: rgba(15, 23, 42, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.orbit-matchup-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.orbit-matchup-side.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.orbit-matchup-side.clickable:hover {
+  transform: scale(1.08);
+}
+
+.orbit-matchup-avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid rgba(56, 189, 248, 0.6);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+}
+
+.orbit-matchup-name {
+  font-family: var(--font-playfair, 'Cinzel', serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.orbit-matchup-name.target-name {
+  color: #38bdf8;
+}
+
+.orbit-matchup-faction {
+  font-family: var(--font-newsreader, 'Inter', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.orbit-matchup-bridge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  padding: 0 24px;
+}
+
+.orbit-matchup-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 18px;
+  font-family: var(--font-newsreader, 'Inter', sans-serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.orbit-matchup-pill.pill-enemy {
+  color: #fca5a5;
+  background: rgba(220, 38, 38, 0.25);
+  border: 1px solid rgba(239, 68, 68, 0.6);
+}
+
+.orbit-matchup-pill.pill-ally {
+  color: #7dd3fc;
+  background: rgba(2, 132, 199, 0.25);
+  border: 1px solid rgba(56, 189, 248, 0.6);
+}
+
+.orbit-matchup-connecting-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.45), transparent);
+}
+
+/* Narrative Story Block */
+.orbit-lore-narrative-block {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.orbit-narrative-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-newsreader, 'Inter', monospace);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+}
+
+.orbit-lore-modal-text {
+  font-family: var(--font-editorial-serif, 'Newsreader', serif);
+  font-size: 1.12rem;
+  line-height: 1.85;
+  color: #f1f5f9;
+  font-style: italic;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin: 0;
+}
+
+.orbit-lore-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 20px 32px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(10, 14, 26, 0.4);
+}
+
+.orbit-modal-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: #e2e8f0;
+  font-family: var(--font-newsreader, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.orbit-modal-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+.orbit-modal-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: var(--font-newsreader, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+}
+
+.orbit-modal-btn-primary:hover {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+}
+
+@media (max-width: 960px) {
+  .orbit-stage-container {
+    height: 480px;
+  }
+
+  .center-avatar-ring {
+    width: 88px;
+    height: 88px;
+  }
+
+  .satellite-avatar-frame {
+    width: 60px;
+    height: 60px;
+  }
+
+  .orbit-lore-modal-box {
+    width: 96vw;
+  }
+
+  .orbit-matchup-banner {
+    padding: 16px 20px;
+  }
+
+  .orbit-lore-narrative-block {
+    padding: 20px;
+  }
+}

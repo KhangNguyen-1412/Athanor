@@ -115,12 +115,12 @@
   top: 10px;
   z-index: 45;
   padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(251, 249, 244, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--hairline-strong);
+  border: 1px solid var(--hairline-strong, rgba(28, 25, 23, 0.16));
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 4px 20px rgba(28, 25, 23, 0.06);
   transition: all 0.2s ease;
 }
 
@@ -155,8 +155,8 @@
 }
 
 .epoch-step-btn:hover {
-  background: var(--bg-subtle);
-  border-color: var(--hairline-strong);
+  background: #faf7f0;
+  border-color: var(--cerulean);
   color: var(--editorial-parchment);
   transform: translateY(-1px);
 }
@@ -172,7 +172,7 @@
   width: 30px;
   height: 30px;
   border-radius: 6px;
-  background: var(--bg-subtle);
+  background: #f5f1e8;
   border: 1px solid var(--hairline);
   display: flex;
   align-items: center;
@@ -251,10 +251,10 @@
 .editorial-era-section {
   position: relative;
   background: #ffffff;
-  border: 1px solid var(--hairline-strong);
+  border: 1px solid var(--hairline-strong, rgba(28, 25, 23, 0.14));
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 4px 24px rgba(28, 25, 23, 0.05);
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -263,8 +263,8 @@
 }
 
 .editorial-era-section:hover {
-  border-color: rgba(15, 23, 42, 0.22);
-  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+  border-color: var(--cerulean-hairline);
+  box-shadow: 0 8px 32px rgba(28, 25, 23, 0.08);
 }
 
 /* KEY ART HERO BANNER */
@@ -419,8 +419,8 @@
 
 .era-clash-card {
   margin: 0 32px;
-  background: rgba(15, 23, 42, 0.02);
-  border: 1px solid var(--hairline-strong);
+  background: #faf7f0;
+  border: 1px solid var(--hairline-strong, rgba(28, 25, 23, 0.12));
   border-radius: 14px;
   padding: 22px 28px;
   display: flex;
@@ -479,10 +479,10 @@
   padding: 12px 16px;
   border-radius: 12px;
   background: #ffffff;
-  border: 1px solid var(--hairline-strong);
+  border: 1px solid var(--hairline-strong, rgba(28, 25, 23, 0.14));
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  box-shadow: 0 2px 8px rgba(28, 25, 23, 0.03);
 }
 
 .clash-fighter:hover {
@@ -671,14 +671,14 @@
 
 .incident-dossier-card {
   background: #ffffff;
-  border: 1px solid var(--hairline-strong);
+  border: 1px solid var(--hairline-strong, rgba(28, 25, 23, 0.14));
   border-radius: 12px;
   padding: 18px 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  box-shadow: 0 2px 8px rgba(28, 25, 23, 0.03);
 }
 
 .incident-dossier-card:hover {
@@ -742,8 +742,8 @@
   justify-content: space-between;
   gap: 8px;
   padding: 8px 12px;
-  background: var(--bg-subtle);
-  border: 1px solid var(--hairline-strong);
+  background: #faf7f0;
+  border: 1px solid var(--hairline-strong, rgba(28, 25, 23, 0.14));
   border-radius: 6px;
   color: var(--editorial-parchment);
   font-size: 0.78rem;
@@ -879,7 +879,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  background: #ffffff;
+  background: #faf7f0;
   border: 1px solid var(--hairline);
   padding: 12px 18px;
   border-radius: 10px;
@@ -990,7 +990,7 @@
   gap: 8px;
   padding: 4px 12px 4px 4px;
   background: #ffffff;
-  border: 1px solid var(--hairline-strong);
+  border: 1px solid var(--hairline-strong, rgba(28, 25, 23, 0.14));
   border-radius: 9999px;
   color: var(--editorial-parchment);
   font-family: var(--font-ui);
@@ -998,7 +998,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 1px 4px rgba(28, 25, 23, 0.04);
 }
 
 .personage-editorial-chip img {
@@ -1010,8 +1010,8 @@
 }
 
 .personage-editorial-chip:hover {
-  background: var(--bg-subtle);
-  border-color: var(--cerulean-hairline);
+  background: var(--cerulean-bg);
+  border-color: var(--cerulean);
   color: var(--cerulean);
   transform: translateY(-1px);
   box-shadow: 0 3px 10px rgba(2, 132, 199, 0.1);

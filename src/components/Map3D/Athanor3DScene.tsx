@@ -68,7 +68,9 @@ export const Athanor3DScene: React.FC<Athanor3DSceneProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const showLabelsRef = useRef(showLabels);
-  showLabelsRef.current = showLabels;
+  useEffect(() => {
+    showLabelsRef.current = showLabels;
+  }, [showLabels]);
   const [hoveredLandmark, setHoveredLandmark] = useState<Landmark | null>(null);
   const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
@@ -120,6 +122,11 @@ export const Athanor3DScene: React.FC<Athanor3DSceneProps> = ({
   const currentLookAt = useRef<THREE.Vector3>(new THREE.Vector3(0, 0, 0));
 
   const spherical = useRef({ radius: 420, theta: 0, phi: Math.PI / 4.2 }); // Góc tọa độ cầu
+
+  // Throttling camera projection so React does NOT re-render 60-120 times every second
+  const lastProjectedCamPos = useRef<THREE.Vector3>(new THREE.Vector3());
+  const lastProjectedLookAt = useRef<THREE.Vector3>(new THREE.Vector3());
+  const lastProjectedTime = useRef<number>(0);
 
   // Khởi tạo Three.js WebGL Scene
   useEffect(() => {
@@ -574,36 +581,50 @@ export const Athanor3DScene: React.FC<Athanor3DSceneProps> = ({
 
         // 6. CHIẾU TỌA ĐỘ 3D LÊN MÀN HÌNH (PROJECT 3D LABELS)
         if (showLabelsRef.current) {
-          const containerW = containerRef.current?.clientWidth || window.innerWidth;
-          const containerH = containerRef.current?.clientHeight || window.innerHeight;
+          const now = performance.now();
+          const camMoved =
+            cameraRef.current.position.distanceToSquared(lastProjectedCamPos.current) > 0.04 ||
+            currentLookAt.current.distanceToSquared(lastProjectedLookAt.current) > 0.04;
+          const timeElapsed = now - lastProjectedTime.current;
 
-          // Cập nhật vị trí các mốc địa danh
-          const newLandmarkPins = ATHANOR_LANDMARKS.map((lm) => {
-            const worldPos = mapPercentTo3D(lm.position.x, lm.position.y, 8);
-            const proj = worldPos.clone().project(cameraRef.current!);
-            const visible = proj.z < 1 && proj.x >= -1.1 && proj.x <= 1.1 && proj.y >= -1.1 && proj.y <= 1.1;
-            return {
-              landmark: lm,
-              screenX: (proj.x * 0.5 + 0.5) * containerW,
-              screenY: (-proj.y * 0.5 + 0.5) * containerH,
-              visible,
-            };
-          });
-          setProjectedPins(newLandmarkPins);
+          // Only recalculate & trigger React re-renders when camera actually moved (or first frame),
+          // throttled to ~30 FPS to prevent locking up the main thread
+          if ((camMoved || lastProjectedTime.current === 0) && (timeElapsed >= 32 || lastProjectedTime.current === 0)) {
+            lastProjectedTime.current = now;
+            lastProjectedCamPos.current.copy(cameraRef.current.position);
+            lastProjectedLookAt.current.copy(currentLookAt.current);
 
-          // Cập nhật vị trí huy hiệu 4 Đại Thế Lực
-          const newMacroPins = MAJOR_FACTIONS_MACRO.map((macro) => {
-            const worldPos = mapPercentTo3D(macro.position.x, macro.position.y, 16);
-            const proj = worldPos.clone().project(cameraRef.current!);
-            const visible = proj.z < 1 && proj.x >= -1.1 && proj.x <= 1.1 && proj.y >= -1.1 && proj.y <= 1.1;
-            return {
-              macro,
-              screenX: (proj.x * 0.5 + 0.5) * containerW,
-              screenY: (-proj.y * 0.5 + 0.5) * containerH,
-              visible,
-            };
-          });
-          setProjectedMacroPins(newMacroPins);
+            const containerW = containerRef.current?.clientWidth || window.innerWidth;
+            const containerH = containerRef.current?.clientHeight || window.innerHeight;
+
+            // Cập nhật vị trí các mốc địa danh
+            const newLandmarkPins = ATHANOR_LANDMARKS.map((lm) => {
+              const worldPos = mapPercentTo3D(lm.position.x, lm.position.y, 8);
+              const proj = worldPos.clone().project(cameraRef.current!);
+              const visible = proj.z < 1 && proj.x >= -1.1 && proj.x <= 1.1 && proj.y >= -1.1 && proj.y <= 1.1;
+              return {
+                landmark: lm,
+                screenX: (proj.x * 0.5 + 0.5) * containerW,
+                screenY: (-proj.y * 0.5 + 0.5) * containerH,
+                visible,
+              };
+            });
+            setProjectedPins(newLandmarkPins);
+
+            // Cập nhật vị trí huy hiệu 4 Đại Thế Lực
+            const newMacroPins = MAJOR_FACTIONS_MACRO.map((macro) => {
+              const worldPos = mapPercentTo3D(macro.position.x, macro.position.y, 16);
+              const proj = worldPos.clone().project(cameraRef.current!);
+              const visible = proj.z < 1 && proj.x >= -1.1 && proj.x <= 1.1 && proj.y >= -1.1 && proj.y <= 1.1;
+              return {
+                macro,
+                screenX: (proj.x * 0.5 + 0.5) * containerW,
+                screenY: (-proj.y * 0.5 + 0.5) * containerH,
+                visible,
+              };
+            });
+            setProjectedMacroPins(newMacroPins);
+          }
         }
       }
 

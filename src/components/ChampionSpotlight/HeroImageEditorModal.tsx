@@ -1,9 +1,10 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import type { Hero, LoreRelation, RelationCategory, FactionId, HeroRole } from '../../types/athanor';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import type { Hero, LoreRelation, RelationCategory, FactionId, HeroRole, HeroSkin } from '../../types/athanor';
 import { HEROES_DATA } from '../../data/heroesData';
 import { FACTIONS_DATA } from '../../data/factionsData';
 import { heroCustomStore } from '../../utils/heroCustomStore';
 import { relationCategoryStore, renderCategoryIcon } from '../../utils/relationCategoryStore';
+import { getHeroSkins } from '../../data/skinsData';
 import { RelationCategoryModal } from './RelationCategoryModal';
 import {
   X,
@@ -30,19 +31,22 @@ import {
   Quote,
   Shield,
   Sparkles,
-  Sliders
+  Sliders,
+  PlayCircle
 } from 'lucide-react';
 import { useBodyScrollLock } from '../../utils/useBodyScrollLock';
 import { RadarChart } from './RadarChart';
 import './HeroImageEditorModal.css';
 
-interface HeroImageEditorModalProps {
+export type EditorTab = 'info' | 'stats' | 'region' | 'secret' | 'media' | 'relations';
+
+export interface HeroImageEditorModalProps {
   hero: Hero;
   onClose: () => void;
   onUpdated: (updatedHero: Hero) => void;
+  initialTab?: EditorTab;
+  focusField?: string;
 }
-
-type EditorTab = 'info' | 'stats' | 'region' | 'secret' | 'media' | 'relations';
 
 const ALL_ROLES: HeroRole[] = [
   'Đấu Sĩ',
@@ -64,11 +68,27 @@ interface RelationDraft {
 export const HeroImageEditorModal: React.FC<HeroImageEditorModalProps> = ({
   hero,
   onClose,
-  onUpdated
+  onUpdated,
+  initialTab = 'info',
+  focusField
 }) => {
   useBodyScrollLock(true);
 
-  const [activeTab, setActiveTab] = useState<EditorTab>('info');
+  const [activeTab, setActiveTab] = useState<EditorTab>(initialTab);
+  const videoInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (activeTab === 'media' && focusField === 'spotlightVideo') {
+      const timer = setTimeout(() => {
+        if (videoInputRef.current) {
+          videoInputRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          videoInputRef.current.focus();
+          videoInputRef.current.select();
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [activeTab, focusField]);
   const [categories, setCategories] = useState<RelationCategory[]>(() =>
     relationCategoryStore.getCategories()
   );
@@ -130,6 +150,45 @@ export const HeroImageEditorModal: React.FC<HeroImageEditorModalProps> = ({
     });
     return initial;
   });
+
+  // Skins state
+  const [skins, setSkins] = useState<HeroSkin[]>(() => {
+    return hero.skins && hero.skins.length > 0 ? hero.skins : getHeroSkins(hero);
+  });
+  const [newSkinName, setNewSkinName] = useState<string>('');
+  const [newSkinTier, setNewSkinTier] = useState<string>('Bậc S+');
+  const [newSkinBanner, setNewSkinBanner] = useState<string>('');
+  const [newSkinAvatar, setNewSkinAvatar] = useState<string>('');
+  const [isAddingSkin, setIsAddingSkin] = useState<boolean>(false);
+
+  const handleAddSkin = () => {
+    if (!newSkinName.trim() || !newSkinBanner.trim()) {
+      alert('Vui lòng nhập tên trang phục và link ảnh splash art!');
+      return;
+    }
+    const newSkin: HeroSkin = {
+      id: `${hero.id}-custom-${Date.now()}`,
+      name: newSkinName.trim(),
+      tier: newSkinTier,
+      bannerUrl: newSkinBanner.trim(),
+      avatarUrl: newSkinAvatar.trim() || newSkinBanner.trim(),
+      quote: `Trang phục ${newSkinName.trim()} của ${hero.name}.`,
+      description: `Trang phục tùy chỉnh được thêm vào hồ sơ Athanor.`
+    };
+    setSkins((prev) => [...prev, newSkin]);
+    setNewSkinName('');
+    setNewSkinBanner('');
+    setNewSkinAvatar('');
+    setIsAddingSkin(false);
+  };
+
+  const handleDeleteSkin = (skinId: string) => {
+    if (skins.length <= 1) {
+      alert('Tướng cần giữ lại ít nhất 1 trang phục mặc định!');
+      return;
+    }
+    setSkins((prev) => prev.filter((s) => s.id !== skinId));
+  };
 
   // 5. Relations state
   const [relations, setRelations] = useState<LoreRelation[]>(() =>
@@ -288,6 +347,7 @@ export const HeroImageEditorModal: React.FC<HeroImageEditorModalProps> = ({
       avatarUrl,
       bannerUrl,
       skillIcons,
+      skins,
       spotlightVideoUrl: spotlightVideoUrl.trim() || undefined
     });
 
@@ -309,6 +369,7 @@ export const HeroImageEditorModal: React.FC<HeroImageEditorModalProps> = ({
     setTitle(hero.title);
     setQuote(hero.quote);
     setRole(hero.role);
+    setSkins(getHeroSkins(hero));
     setSecondaryRole(hero.secondaryRole || '');
     setBirthday(hero.birthday || '');
     setHeight(hero.height || '');
@@ -1109,19 +1170,193 @@ ${JSON.stringify(relations, null, 2)}`;
               </div>
 
               {/* Video Spotlight URL */}
-              <div className="editor-field-section">
+              <div className="editor-field-section" id="section-spotlight-video">
                 <div className="field-section-head">
-                  <h4 className="field-section-title">VIDEO TÂM ĐIỂM TƯỚNG</h4>
+                  <h4 className="field-section-title">VIDEO TÂM ĐIỂM TƯỚNG (YOUTUBE)</h4>
+                  <span className="field-section-hint">Tùy chỉnh link YouTube hoặc ID video riêng</span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  <input
-                    type="text"
-                    placeholder="https://www.youtube.com/watch?v=... (Để trống để dùng video mặc định của Garena)"
-                    value={spotlightVideoUrl}
-                    onChange={(e) => setSpotlightVideoUrl(e.target.value)}
-                    className="minimal-input-field"
-                  />
+                  <div className="input-icon-wrap">
+                    <PlayCircle size={16} className="input-lead-icon" style={{ color: '#ef4444' }} />
+                    <input
+                      ref={videoInputRef}
+                      type="text"
+                      placeholder="https://www.youtube.com/watch?v=... (hoặc dán ID video)"
+                      value={spotlightVideoUrl}
+                      onChange={(e) => setSpotlightVideoUrl(e.target.value)}
+                      className="minimal-input-field"
+                    />
+                  </div>
+                  <span style={{ fontSize: '0.72rem', color: 'var(--editorial-dim)' }}>
+                    Để trống nếu muốn dùng video tâm điểm mặc định từ Garena Liên Quân Mobile.
+                  </span>
                 </div>
+              </div>
+
+              {/* Skins Management Section */}
+              <div className="editor-field-section" id="section-skins-management">
+                <div className="field-section-head">
+                  <h4 className="field-section-title">BỘ SƯU TẬP TRANG PHỤC ({skins.length})</h4>
+                  <span className="field-section-hint">Quản lý và thêm trang phục độc quyền cho tướng</span>
+                </div>
+
+                <div className="skins-editor-list" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {skins.map((skin, idx) => (
+                    <div
+                      key={skin.id}
+                      className="skin-editor-item-card"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '8px 12px',
+                        background: '#f8fafc',
+                        borderRadius: '10px',
+                        border: '1px solid rgba(15, 23, 42, 0.08)'
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
+                        <img
+                          src={skin.avatarUrl || skin.bannerUrl}
+                          alt={skin.name}
+                          style={{
+                            width: '42px',
+                            height: '42px',
+                            borderRadius: '8px',
+                            objectFit: 'cover',
+                            border: '1px solid rgba(15, 23, 42, 0.1)',
+                            flexShrink: 0
+                          }}
+                          onError={(e) => { e.currentTarget.src = hero.avatarUrl; }}
+                        />
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', minWidth: 0 }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#0f172a' }}>{skin.name}</span>
+                            {skin.tier && (
+                              <span style={{ fontSize: '0.68rem', fontWeight: 700, color: '#b45309', background: 'rgba(245, 158, 11, 0.15)', padding: '1px 6px', borderRadius: '4px' }}>
+                                {skin.tier}
+                              </span>
+                            )}
+                          </div>
+                          <span style={{ fontSize: '0.72rem', color: '#64748b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '340px' }}>
+                            {skin.bannerUrl}
+                          </span>
+                        </div>
+                      </div>
+
+                      {idx > 0 && (
+                        <button
+                          type="button"
+                          className="rel-icon-btn delete"
+                          onClick={() => handleDeleteSkin(skin.id)}
+                          title="Xóa trang phục này"
+                        >
+                          <Trash2 size={13} />
+                          <span>Xóa</span>
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Add new skin box */}
+                {!isAddingSkin ? (
+                  <button
+                    type="button"
+                    className="minimal-btn-accent"
+                    style={{ marginTop: '12px' }}
+                    onClick={() => setIsAddingSkin(true)}
+                  >
+                    <Plus size={14} />
+                    <span>Thêm Trang Phục Mới</span>
+                  </button>
+                ) : (
+                  <div
+                    className="skin-add-form animate-fade-in"
+                    style={{
+                      marginTop: '14px',
+                      padding: '16px',
+                      background: '#f8fafc',
+                      borderRadius: '12px',
+                      border: '1px solid rgba(15, 23, 42, 0.12)'
+                    }}
+                  >
+                    <h5 style={{ margin: '0 0 10px', fontSize: '0.82rem', fontWeight: 800, color: '#0f172a', letterSpacing: '0.04em' }}>
+                      ✦ THÊM TRANG PHỤC MỚI CHO {hero.name.toUpperCase()}
+                    </h5>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '10px' }}>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 600, color: '#64748b', marginBottom: '4px' }}>TÊN TRANG PHỤC</label>
+                        <input
+                          type="text"
+                          placeholder="Ví dụ: Hoàng Kim Cốt, Siêu Việt..."
+                          value={newSkinName}
+                          onChange={(e) => setNewSkinName(e.target.value)}
+                          className="minimal-input-field"
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 600, color: '#64748b', marginBottom: '4px' }}>PHÂN CẤP BẬC</label>
+                        <select
+                          value={newSkinTier}
+                          onChange={(e) => setNewSkinTier(e.target.value)}
+                          className="minimal-input-field"
+                        >
+                          <option value="Bậc A">Bậc A</option>
+                          <option value="Bậc S">Bậc S</option>
+                          <option value="Bậc S+">Bậc S+</option>
+                          <option value="Bậc SS">Bậc SS</option>
+                          <option value="Bậc SSS">Bậc SSS</option>
+                          <option value="Tuyệt Sắc">Tuyệt Sắc</option>
+                          <option value="Thứ Nguyên Vệ Thần">Thứ Nguyên Vệ Thần</option>
+                          <option value="Collab">Collab</option>
+                          <option value="Tiệc Bãi Biển">Tiệc Bãi Biển</option>
+                          <option value="Quán Quân">Quán Quân</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div style={{ marginBottom: '10px' }}>
+                      <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 600, color: '#64748b', marginBottom: '4px' }}>LINK HÌNH NỀN SPLASH ART (BẮT BUỘC)</label>
+                      <input
+                        type="text"
+                        placeholder="https://... (dán link ảnh splash art online)"
+                        value={newSkinBanner}
+                        onChange={(e) => setNewSkinBanner(e.target.value)}
+                        className="minimal-input-field"
+                      />
+                    </div>
+
+                    <div style={{ marginBottom: '14px' }}>
+                      <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 600, color: '#64748b', marginBottom: '4px' }}>LINK AVATAR THU NHỎ (TÙY CHỌN)</label>
+                      <input
+                        type="text"
+                        placeholder="Để trống nếu muốn tự động dùng ảnh splash art"
+                        value={newSkinAvatar}
+                        onChange={(e) => setNewSkinAvatar(e.target.value)}
+                        className="minimal-input-field"
+                      />
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <button
+                        type="button"
+                        className="minimal-btn-accent"
+                        onClick={handleAddSkin}
+                      >
+                        <Check size={13} />
+                        <span>Xác Nhận Thêm</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="minimal-btn-outline"
+                        onClick={() => setIsAddingSkin(false)}
+                      >
+                        Hủy
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -1397,6 +1632,24 @@ ${JSON.stringify(relations, null, 2)}`;
               title="Xóa vị tướng này khỏi danh bạ Athanor"
             >
               <Trash2 size={13} />
+            </button>
+            <button
+              type="button"
+              className="footer-link-btn"
+              onClick={handleReset}
+              title="Khôi phục dữ liệu gốc của tướng"
+            >
+              <RotateCcw size={13} />
+              <span>Khôi phục gốc</span>
+            </button>
+            <button
+              type="button"
+              className="footer-link-btn"
+              onClick={copyCodeSnippet}
+              title="Sao chép cấu hình dưới dạng mã nguồn TypeScript"
+            >
+              {copied ? <Check size={13} /> : <Copy size={13} />}
+              <span>{copied ? 'Đã sao chép!' : 'Sao chép mã'}</span>
             </button>
           </div>
 
